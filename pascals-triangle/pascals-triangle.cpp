@@ -1,5 +1,22 @@
 class Solution {
 public:
+    /*METHOD 2 (Optimal solution)
+    In this method we will generate a list for every row
+    if row=5 the answer should be {1,4,6,4,1} it's a zero based index
+    we start from the second element
+    we can observe that 4 6 4 1 is formed by the foumulae
+    ans=1
+    while(i>rows)
+        ans=ans*(row-col)
+        ans=ans/col;
+
+    4 is formed by 1*(5-1)/1=4
+    6 is formed by 4*(5-2)/2=6
+    4 is formed by 6*(5-3)/3=4
+    1 is formed by 4*(5-4)/4=1
+
+    Therefore below is the function to calculate the elements of nth row, and it will generate a list
+    */
     vector<int> nCr(int row)
     {
         int ans=1;
