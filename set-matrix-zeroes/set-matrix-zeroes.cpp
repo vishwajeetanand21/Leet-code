@@ -9,6 +9,7 @@ public:
     at this point of time rows=[0,1,0] and cols=[0,1,0]
     then again we will traverse the matrix
     if (rows[i]==1 or cols[j]==1) then arr[i][j]=0 
+    this means check if that rows has to be 0 or that cols has to be 0
     */
     void setZeroes(vector<vector<int>>& arr) {
         int m=arr.size();
