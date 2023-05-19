@@ -1,11 +1,36 @@
 class Solution {
 public:
-    /*LOGIC: Every element is formed by a formulae that is: nCr=(n!)/(r! * (n-r)!)
+    vector<int> nCr(int row)
+    {
+        int ans=1;
+        vector<int>temp;
+        temp.push_back(1);//because the first element is always 1
+        for(int i=1;i<row;i++)//zero based indexing, here i represents column number
+        {
+            ans=ans*(row-i);
+            ans=ans/i;
+            temp.push_back(ans);
+        }
+        return temp;
+    }
+    vector<vector<int>> generate(int n)
+    {
+        vector<vector<int>>answer;
+
+        for(int i=1;i<=n;i++)
+        {
+            vector<int>temp=nCr(i);
+            answer.push_back(temp);
+        }
+        return answer;
+    }
+    /*METHOD 1 (Brute force)
+    LOGIC: Every element is formed by a formulae that is: nCr=(n!)/(r! * (n-r)!)
       But there is a slight modification for this problem
       Every element is formed by the formulae (i-1)C(j-1) where i->rows and j->coolumns
-    */
+    
 
-    /* 
+     
     this is the best method to calculate the value of nCr
     10C3= (10*9*8*7...*1)/((3*2*1)*(7*6*5*...))
         = (10*9*8)/(3*2*1)
@@ -14,7 +39,7 @@ public:
 
      therefore 10C3 can be calculated as (10/1)*(9/2)*(8/3)
      thus the below function does calculates the same  
-    */
+    
     int nCr(int n, int r)
     {
         int res=1;
@@ -43,6 +68,5 @@ public:
         }
 
         return answer;
-
-    }
+    }*/
 };
