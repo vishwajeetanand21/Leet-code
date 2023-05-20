@@ -1,5 +1,11 @@
 class Solution {
 public:
+    //LOGIC: COUNTING SORT
+    // Count the number of zeros, ones and twos in the first traversal
+    // then in the second traversal 
+    // start from 0 to number of zeros and set arr[i]=0
+    // second start from zeros to (zeros+ones) and set arr[i]=1
+    // lastlt start from (zeros+ones) to n and set arr[i]==2
     void sortColors(vector<int>& arr) {
         int n=arr.size();
 
