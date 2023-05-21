@@ -11,7 +11,8 @@ public:
 
     /*
     METHOD 1: OPTIMAL SOLUTION
-    STEP 1: Find the breaking point where arr[i]<arr[i+1]
+    STEP 1: Find the breaking point where arr[i]<arr[i+1] 
+    NOTE: Traverse from right to left not from left to right
     For example (2,1,5,4,3,0,0) here 1<5 then store it in idn variable
     In case the breaking point (arr[i]<arr[i+1]) doesn't exist 
     then simple reverse the array, it will be the next permutation
@@ -24,7 +25,7 @@ public:
     (2,3,5,4,1,0,0) and idn=1
 
     STEP 3: Then reverse the right half (5,4,1,0,0)->(0,0,1,4,5)
-    The whole array will be like (2,3,0,0,1,4,5) this is our answer
+    The whole array will be like (2,3,0,0,1,4,5) this is our
     */
     void nextPermutation(vector<int>& arr) 
     {
