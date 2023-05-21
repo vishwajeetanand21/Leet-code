@@ -1,5 +1,9 @@
 class Solution {
 public:
+    /*
+    LOGIC: First do the transpose of the matrix
+           Then reverse each row of the matrix
+    */
     void transposeMatrix(vector<vector<int>>& arr, int n)
     {
         for(int i=0;i<n;i++)
