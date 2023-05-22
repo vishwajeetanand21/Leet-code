@@ -47,7 +47,6 @@ class Solution{
                 }
                 else
                 {
-                    break;
                     last--;
                     first++;
                 }
