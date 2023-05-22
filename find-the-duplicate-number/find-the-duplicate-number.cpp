@@ -6,20 +6,25 @@ public:
 
 int findDuplicate(vector<int>& arr) 
 {
-	//step 1: initialize the slow and fast pointer
+	//step 1: initialize the slow and fast pointer at the starting element
 	int slow=arr[0];
 	int fast=arr[0];
 
-	//step 2: 
+	//step 2: move the slow pointer one step at a time => slow=arr[slow]
+	// 		  move the fast pointer two step at a time => fast=arr[arr[fast]]
+	// where ever they meet stop
 	do
 	{
 		slow=arr[slow];
 		fast=arr[arr[fast]];
 	}while(slow!=fast);
 
+    // Step 3: initialize the fast pointer to the starting of the array
     fast=arr[0];
 
-	// step 3:
+   	// step 4: then again move both the pointers
+	// but this time both pointer should move one step at a time
+	// the place where they collide is the duplicate element 
 	while(slow!=fast)
 	{
 		slow=arr[slow];
