@@ -7,6 +7,36 @@ using namespace std;
 //User function template for C++
 class Solution{
 public:	
+    int matSearch (vector <vector <int>> &mat, int N, int M, int X)
+    {
+        // calculating the number of rows
+    int n=mat.size();
+    // calculating the number of columns
+    int m=mat[0].size();
+    
+    // declaring the pointers
+    int row=0; //row will be pointing at the 0th row 
+    int col=m-1; //col will be pointing at the 0th column 
+    
+    while(row<n && col>=0)
+    {
+        if(mat[row][col]==X)
+        {
+            return true;
+        }
+        
+        if(mat[row][col]<X)
+        {
+            row++;
+        }
+        else
+        {
+            col--;
+        }
+    }
+    return false;
+    }
+    /*
 	int matSearch (vector <vector <int>> &mat, int N, int M, int X)
 	{
 	    // your code here
@@ -30,7 +60,7 @@ public:
 	        }
 	    }
 	    return false;
-	}
+	}*/
 };
 
 //{ Driver Code Starts.
