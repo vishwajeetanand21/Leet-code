@@ -37,25 +37,29 @@ public:
         for(int i=1;i<myVector.size();i++)
         {
             // step 5
-            int start1=myStack.top().first;
-            int end1=myStack.top().second;
-            int start2=myVector[i][0];
-            int end2=myVector[i][1];
+            //[a,b][c,d]
+            int start1=myStack.top().first; //a
+            int end1=myStack.top().second; //b
+            int start2=myVector[i][0];  //c
+            int end2=myVector[i][1];  //d
             
-            // step 6
-            if(end1<start2)
+            // step 6: 
+            // [8,10][15,18]: Here b=10 and c=15, there is a gap between c and b. Therefor we have to push the 
+            // current element into the stack
+            if(end1<start2) //b<c
             {
                 myStack.push({start2,end2});
             }
-            else
+            else 
+            // [1,3][2,6]: Here b=3 and c=2, there is no gap between c and b. Therefore we will merge this interval
             {
-                myStack.pop();
-                end1=max(end1,end2);
-                myStack.push({start1,end1});
+                myStack.pop(); //first we will pop out the current top from that stack
+                end1=max(end1,end2); //then we will update the new end
+                myStack.push({start1,end1}); //Then finally push the new interval into the stack
             }
         }
         
-        // step 7
+        // step 7: Transfer all the element from stack to vector
         vector<vector<int>>answer;
         while(myStack.size()!=0)
         {
@@ -63,7 +67,7 @@ public:
             myStack.pop();
         }
 
-        // step 8
+        // step 8: Return the answer vector
         return answer;
     }
 };
