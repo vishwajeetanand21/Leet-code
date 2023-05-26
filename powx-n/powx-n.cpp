@@ -44,6 +44,7 @@ example:
             if (nn & 1 == 1) // y is odd
             {
                 result = result * x;
+                nn=nn-1;
             }
             x = x * x;
             nn = nn >> 1; // y=y/2;
