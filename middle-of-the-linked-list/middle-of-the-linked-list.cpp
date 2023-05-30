@@ -10,6 +10,7 @@
  */
 class Solution {
 public:
+    // LOGIC: Using Fast and Slow pointer approach
     ListNode* middleNode(ListNode* head) {
         ListNode*slow=head;
         ListNode*fast=head;
