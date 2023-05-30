@@ -39,6 +39,7 @@ struct Node {
 class Solution{
     public:
     /* Should return data of middle node. If linked list is empty, then  -1*/
+    // LOGIC: Using Fast and Slow pointer approach
     int getMiddle(Node *head)
     {
         Node*slow=head;
