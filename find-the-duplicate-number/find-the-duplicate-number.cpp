@@ -3,7 +3,11 @@ class Solution
 {
 
 public:
+/*METHOD 3: Using LINKED LIST CYCLE METHOD
+fast pointer and slow pointer (tortoise approachh)
+For better understanding: https://takeuforward.org/data-structure/find-the-duplicate-in-an-array-of-n1-integers/
 
+*/
 int findDuplicate(vector<int>& arr) 
 {
 	//step 1: initialize the slow and fast pointer at the starting element
