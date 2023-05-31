@@ -39,6 +39,11 @@ int getNthFromLast(struct Node* head, int n);
 //Function to find the data of nth node from the end of a linked list.
 class Solution{
 public:
+    /*
+    LOGIC: To find the nth node from the end of the linked list we will use a formulae
+           pos=len-n+1 
+           this will give us the node which we have to print by traversing from left to right
+    */
     int lengthLL(Node*head)
     {
         int ans=0;
