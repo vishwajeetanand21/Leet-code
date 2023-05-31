@@ -19,6 +19,7 @@ class Solution{
                  -> invCount will be updated as invCount+=(size1-i) whereever part1[i]>part2[j]
            Third -> please take care of the DATA TYPES of all the variables
                     Difference platforms have different return types, for this you have to modify the data types
+           Fourth-> Use PASS BY ADDRESS instead of PASS BY VALUE
     */
     long long int mergeTwoArray(vector<long long>&part1, vector<long long>&part2, vector<long long >&output)
     {
@@ -76,6 +77,9 @@ class Solution{
     long long int inversionCount(long long array[], long long n)
     {
         // Your Code Here
+        
+        // convert the array to a vector, because then only our code will run
+        
         vector<long long>arr;
         
         for(long long i=0;i<n;i++)
