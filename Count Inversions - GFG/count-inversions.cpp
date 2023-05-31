@@ -21,7 +21,7 @@ class Solution{
                     Difference platforms have different return types, for this you have to modify the data types
            Fourth-> Use PASS BY ADDRESS instead of PASS BY VALUE
     */
-    long long int mergeTwoArray(vector<long long>&part1, vector<long long>&part2, vector<long long >&output)
+    long long int mergeTwoArray(vector<long long>&part1, vector<long long>&part2, vector<long long >&output) //use pass by address
     {
         long long size1=part1.size();
         long long size2=part2.size();
@@ -51,7 +51,7 @@ class Solution{
         }
         return invCount;
     }
-    long long int mergeSort(vector<long long>&arr)
+    long long int mergeSort(vector<long long>&arr) //use pass by address
     {
         long long n=arr.size();
         
