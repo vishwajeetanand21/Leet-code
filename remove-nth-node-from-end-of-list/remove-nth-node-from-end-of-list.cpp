@@ -10,7 +10,11 @@
  */
 class Solution {
 public:
-    //LOGIC: The code is for normal deletion of kth node from the start
+    // BETTER APPROACH is also available
+
+
+    // Method 2
+    // LOGIC: The code is for normal deletion of kth node from the start
     // But we have used the formulae to delete from the end
     // pos= n-k+1 
     // where n->length of the linked list
@@ -49,7 +53,7 @@ public:
         return answer;
     }
     /*
-    APPROACH 2 
+    APPROACH 1
     LOGIC: Fast and slow pointer approach
     both fast and slow pointer are pointer to the head
     first fast pointer will to move n steps ahead
