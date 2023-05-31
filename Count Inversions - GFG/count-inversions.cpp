@@ -9,6 +9,17 @@ class Solution{
     // arr[]: Input Array
     // N : Size of the Array arr[]
     // Function to count inversions in the array.
+    
+    
+    /*
+    LOGIC: We will use merge sort to calculate the count inversion
+           there is a slight modification in this code
+           first -> we wil  be using vector instead of an array, because in gfg if we use vector then only all test cases are getting passed
+           second-> we will maintain a invCount variable which will count the number of inversions
+                 -> invCount will be updated as invCount+=(size1-i) whereever part1[i]>part2[j]
+           Third -> please take care of the DATA TYPES of all the variables
+                    Difference platforms have different return types, for this you have to modify the data types
+    */
     long long int mergeTwoArray(vector<long long>&part1, vector<long long>&part2, vector<long long >&output)
     {
         long long size1=part1.size();
@@ -26,7 +37,7 @@ class Solution{
             else
             {
                 output[k++]=part2[j++];
-                invCount += (size1-i);
+                invCount += (size1-i); //modified step
             }
         }
         while(i<size1)
@@ -49,8 +60,8 @@ class Solution{
         }
         
         long long mid=n/2;
-        // long long size1= mid, size2= n-mid;
         
+        // the below code will automatically initialize the 2 vectors 
         vector<long long>part1 (arr.begin(), arr.begin()+mid);
         vector<long long>part2 (arr.begin()+mid, arr.end());
         
