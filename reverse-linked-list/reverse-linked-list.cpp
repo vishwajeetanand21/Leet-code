@@ -10,31 +10,54 @@
  */
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        if(head==NULL ||head->next==NULL)
+    // LOGIC: Iterative Method using 3 pointer. Do a dry run for better understanding
+    ListNode* reverseList(ListNode* head) 
     {
+        ListNode*prevP=NULL;
+        ListNode*currP=head;
+        ListNode*nextP;
+
+        while(currP!=NULL)
+        {
+            nextP=currP->next;
+            currP->next=prevP;
+
+            prevP=currP;
+            currP=nextP;
+        }
+
+        head=prevP;
         return head;
     }
-    
-    //calling recursion
-    ListNode*smallAns=reverseList(head->next);
-    /*at this point of time
-    head=1-address of 2
-    smallAns=5--4-3-2-NULL*/
-    
-    
-    ListNode*temp=smallAns;/*temporary variable to tarverse the linked list 
-    which we got from recursion*/
-    
-    
-    //loop to traverse the LL, which we got from recursion
-    while(temp->next!=NULL)
-    {
-        temp=temp->next;
+
+
+    /*LOGIC: Using Recursion
+    ListNode* reverseList(ListNode* head) {
+        if(head==NULL ||head->next==NULL)
+        {
+            return head;
+        }
+        
+        //calling recursion
+        ListNode*smallAns=reverseList(head->next);
+        // at this point of time
+        // head=1-address of 2
+        // smallAns=5--4-3-2-NULL
+        
+        
+        ListNode*temp=smallAns;//temporary variable to tarverse the linked list 
+        // which we got from recursion
+        
+        
+        //loop to traverse the LL, which we got from recursion
+        while(temp->next!=NULL)
+        {
+            temp=temp->next;
+        }
+        
+        temp->next=head;//connecting the end of the LL with our head
+        head->next=NULL;//1 is connected to 2, so we need to break the link
+        return smallAns;//and returninthe answer
     }
-    
-    temp->next=head;//connecting the end of the LL with our head
-    head->next=NULL;//1 is connected to 2, so we need to break the link
-    return smallAns;//and returninthe answer
-    }
+    */
 };
