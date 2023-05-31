@@ -34,6 +34,7 @@ class Solution
     public:
     //Function to reverse a linked list.
     
+    // LOGIC: Iterative Method: Using 3 pointer   Do a dry run for understanding 
     struct Node* reverseList(struct Node *head)
     {
         Node*prevP=NULL;
