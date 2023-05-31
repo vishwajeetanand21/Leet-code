@@ -9,56 +9,69 @@ class Solution{
     // arr[]: Input Array
     // N : Size of the Array arr[]
     // Function to count inversions in the array.
-    long long merge(long long arr[],long long temp[],int left,int mid,int right)
+    long long int mergeTwoArray(vector<long long>&part1, vector<long long>&part2, vector<long long >&output)
     {
-        long long inv_count=0;
-        int i = left;
-        int j = mid;
-        int k = left;
-        while((i <= mid-1) && (j <= right)){
-            if(arr[i] <= arr[j]){
-                temp[k++] = arr[i++];
+        long long size1=part1.size();
+        long long size2=part2.size();
+        
+        long long i=0,j=0,k=0;
+        long long int invCount=0;
+        
+        while(i<size1 && j<size2)
+        {
+            if(part1[i]<=part2[j])
+            {
+                output[k++]=part1[i++];
             }
             else
             {
-                temp[k++] = arr[j++];
-                inv_count = inv_count + (mid - i);
+                output[k++]=part2[j++];
+                invCount += (size1-i);
             }
         }
-    
-        while(i <= mid - 1)
-            temp[k++] = arr[i++];
-    
-        while(j <= right)
-            temp[k++] = arr[j++];
-    
-        for(i = left ; i <= right ; i++)
-            arr[i] = temp[i];
-        
-        return inv_count;
-    }
-    long long merge_Sort(long long arr[],long long temp[],int left,int right)
-    {
-        int mid;
-        long long inv_count = 0;
-        if(right > left)
+        while(i<size1)
         {
-            mid = (left + right)/2;
-    
-            inv_count += merge_Sort(arr,temp,left,mid);
-            inv_count += merge_Sort(arr,temp,mid+1,right);
-    
-            inv_count += merge(arr,temp,left,mid+1,right);
+            output[k++]=part1[i++];
         }
-        return inv_count;
+        while(j<size2)
+        {
+            output[k++]=part2[j++];
+        }
+        return invCount;
     }
-    long long int inversionCount(long long arr[], long long n)
+    long long int mergeSort(vector<long long>&arr)
+    {
+        long long n=arr.size();
+        
+        if(n==0 || n==1)
+        {
+            return 0;
+        }
+        
+        long long mid=n/2;
+        // long long size1= mid, size2= n-mid;
+        
+        vector<long long>part1 (arr.begin(), arr.begin()+mid);
+        vector<long long>part2 (arr.begin()+mid, arr.end());
+        
+        long long int invCount=0;
+        
+        invCount+=mergeSort(part1);
+        invCount+=mergeSort(part2);
+        invCount+=mergeTwoArray(part1, part2, arr);
+        
+        return invCount;
+    }
+    long long int inversionCount(long long array[], long long n)
     {
         // Your Code Here
-        long long temp[n];
-        long long ans = merge_Sort(arr,temp,0,n-1);
-        // cout<<"The total inversions are "<<ans<<endl; 
-        return ans;
+        vector<long long>arr;
+        
+        for(long long i=0;i<n;i++)
+        {
+            arr.push_back(array[i]);
+        }
+        return mergeSort(arr);
     }
 
 };
