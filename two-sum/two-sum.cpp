@@ -1,26 +1,29 @@
 class Solution 
 {
     public:
+    /*
+    LOGIC: we will store the ELEMENT along will its INDEX in the HashMap.
+    */
     vector<int> twoSum(vector<int>& nums, int target) 
     {
-        vector<int>answer;
+        vector<int>answer; //vector to store the answer
 
-        unordered_map<int, int>myMap;
+        unordered_map<int, int>myMap; //map to store the element ans it's index
 
-        for(int i=0;i<nums.size();i++)
+        for(int i=0;i<nums.size();i++)//loop to traverse the array
         {
-            int currElement=nums[i];
-            int moreNeeded=target-currElement;
+            int currElement=nums[i]; //current element
+            int moreNeeded=target-currElement; //how much more is needed
 
-            if(myMap.find(moreNeeded) != myMap.end())
+            if(myMap.find(moreNeeded) != myMap.end()) //if how much more needed is already present in our map
             {
-                answer.push_back(i);
-                answer.push_back(myMap[moreNeeded]);
+                answer.push_back(i); //then simply return current element index
+                answer.push_back(myMap[moreNeeded]); //and the index of more needed element
                 return answer;
             }
-            myMap[currElement]=i;
+            myMap[currElement]=i; //if not then add the new element and store it's index
         }
-        return answer;
+        return answer;//finally return the answer
     }
 
 
