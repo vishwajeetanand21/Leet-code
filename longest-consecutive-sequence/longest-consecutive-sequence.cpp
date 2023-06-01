@@ -1,5 +1,9 @@
 class Solution {
 public:
+    /*
+    LOGIC: BRUTE FORCE 
+    We can simply sort the array and run a for loop to find the longest consecutive sequence.
+    */
     int longestConsecutive(vector<int>& arr) 
     {
         int n=arr.size();
