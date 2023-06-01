@@ -3,6 +3,13 @@ class Solution
     public:
     /*
     LOGIC: we will store the ELEMENT along will its INDEX in the HashMap.
+           Then we will traverse the array from left to right
+           We'll store the current element as currElement
+           And we'll calculate how much more is needed as moreNeeded
+                if moreNeeded is already in our map
+                    then simply return the index of current element and the index of moreNeeded element
+                else
+                    simply store the current element and it's index 
     */
     vector<int> twoSum(vector<int>& nums, int target) 
     {
