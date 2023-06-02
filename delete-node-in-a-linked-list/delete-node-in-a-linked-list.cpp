@@ -8,7 +8,8 @@
  */
 class Solution {
 public:
-    /*LOGIC: Copy 
+    /*LOGIC: The approach is to copy the next node’s value in the deleted node. Then, link node to next of next node. This does not delete that node but indirectly it removes that node from the linked list.
+    
 
                             delNode
                               ↓
