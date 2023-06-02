@@ -9,7 +9,87 @@ class Solution{
     // arr[] : the input array
     // N : size of the array arr[]
     
-    //Function to return length of longest subsequence of consecutive integers.
+    // USING PRIORITY QUEUES
+    int findLongestConseqSubseq(int arr[], int n)
+    {
+        priority_queue<int, vector<int>, greater<int>>myQueue;
+        
+        for(int i=0;i<n;i++)
+        {
+            myQueue.push(arr[i]);
+        }
+        
+        int ans=1;
+        int temp=1;
+        
+        int currentElement=myQueue.top();
+        myQueue.pop();
+        
+        while(myQueue.size())
+        {
+            int nextElement=myQueue.top();
+            
+            if(currentElement == nextElement)
+            {
+                myQueue.pop();
+                continue;
+            }
+            if(currentElement+1 == nextElement)
+            {
+                temp++;
+            }
+            if(currentElement+1 != nextElement)
+            {
+                temp=1;
+            }
+            
+            currentElement=myQueue.top();
+            myQueue.pop();
+            
+            ans=max(ans, temp);
+        }
+        return ans;
+    }
+    
+    /*Function to return length of longest subsequence of consecutive integers.
+    int findLongestConseqSubseq(int arr[], int n)
+    {
+        //Your code here
+      
+        //variable to store the answer
+        int result=0;
+      
+        //making a set
+        unordered_set<int>mySet;
+        
+        //adding all the elements in the set
+        for(int i=0;i<n;i++) mySet.insert(arr[i]);
+        
+        
+        //checking if (arr[i]-1) elements if present or not
+        for(auto i: mySet)
+        {
+            if(mySet.find(i-1) == mySet.end())
+            {
+                // check where it break
+                int j=1;
+                while(mySet.find(i+j) != mySet.end())
+                {
+                    j++;
+                }
+                result=max(result, j);
+            }
+        }
+        
+        return result;
+    }
+    */
+    
+    
+    
+    /*
+    LOGIC: BRUTE FORCE APPROACH
+    We can simply sort the array and run a for loop to find the longest consecutive sequence.
     int findLongestConseqSubseq(int arr[], int n)
     {
         //Your code here
@@ -38,6 +118,7 @@ class Solution{
         }
         return ans;
     }
+    */
 };
 
 //{ Driver Code Starts.
