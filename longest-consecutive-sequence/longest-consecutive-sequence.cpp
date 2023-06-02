@@ -2,22 +2,18 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& arr)
     {
-        if(arr.size()==0)
-        {
-            return NULL;
-        }
+        int n=arr.size();
 
-        set<int>mySet;
-        for(int i=0;i<arr.size();i++)
+        if(n==0)
         {
-            mySet.insert(arr[i]);
+            return 0;
         }
 
         priority_queue<int, vector<int>, greater<int>>myQueue;
 
-        for(auto  i: mySet)
+        for(int i=0;i<n;i++)
         {
-            myQueue.push(i);
+            myQueue.push(arr[i]);
         }
 
         int ans=1;
@@ -28,18 +24,24 @@ public:
 
         while(myQueue.size()!=0)
         {
+            if(currentElement == myQueue.top())
+            {
+                myQueue.pop();
+                continue;
+            }
+
             if(currentElement+1 == myQueue.top())
             {
-                temp++;
+                temp += 1;
             }
             if(currentElement+1 != myQueue.top())
             {
-                temp=1;
+                temp = 1;
             }
 
             currentElement=myQueue.top();
             myQueue.pop();
-            
+
             ans=max(ans, temp);
         }
         return ans;
