@@ -11,7 +11,7 @@ public:
     /*LOGIC: Copy 
 
                             delNode
-                            ↓
+                              ↓
                         1->2->3->4->5->NULL 
                                 ↑
                                 temp
@@ -19,7 +19,7 @@ public:
     1. we will copy the data of temp to delNode, like this
     
                             delNode
-                            ↓
+                              ↓
                         1->2->4->4->5->NULL
                                 ↑
                                 temp
@@ -27,18 +27,16 @@ public:
     2. now update delNode->next=temp->next;
     
                             delNode
-                            ↓
+                              ↓
                         1->2->4->5->NULL
-                                ↑
-                        temp->4  
+                                 ↑
+                           temp->4  
     
-    3. and make temp->next=NULL
+    3. and delete temp
     
                             delNode
-                            ↓
+                              ↓
                         1->2->4->5->NULL
-
-                        temp->3->NULL
     
     TC: O(1)
     SC: O(1)
@@ -50,6 +48,7 @@ public:
 
         node->next=temp->next;
 
-        temp->next=NULL;
+        // delete temp
+        delete temp;
     }
 };
