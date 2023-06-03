@@ -25,19 +25,19 @@ public:
     */
 
     /*
-    APPROACH: Using HashMap
+    APPROACH: Using Unordered Set
 
-    Step 1: We will traverse the first linked list and store the address of each node
+    Step 1: We will traverse the first linked list and store the address of each node in our set
     Step 2: Then we will traverse the second linked list
-            If the node address is present in the map
+            If the node address is present in the set
                 then return that node thereafter of the second list
             else
                 return NULL 
     */
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        unordered_set<ListNode*>mySet;  //This map will store the address of each node
+        unordered_set<ListNode*>mySet;  //This set will store the address of each node of the first linked list
 
-        // storing the address of each node in our map
+        // storing the address of each node in our set of first linked list
         while(headA!=NULL)
         {
             mySet.insert(headA);
@@ -47,7 +47,7 @@ public:
         // now traverse the second linked list
         while(headB!=NULL)
         {
-            // if the current node address is there in our map
+            // if the current node address is there in our set
             if(mySet.find(headB) != mySet.end())
             {
                 return headB; //this means it is our intersection point
