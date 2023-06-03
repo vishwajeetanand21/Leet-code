@@ -11,7 +11,7 @@ public:
     bool hasCycle(ListNode *head) {
         unordered_set<ListNode*>mySet;
 
-        if(head==NULL)
+        if(head==NULL || head->next==NULL)
         {
             return 0;
         }
