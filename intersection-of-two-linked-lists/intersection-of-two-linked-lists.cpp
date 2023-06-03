@@ -47,14 +47,15 @@ public:
         // now traverse the second linked list
         while(headB!=NULL)
         {
+            // if the current node address is there in our map
             if(mySet.find(headB) != mySet.end())
             {
-                return headB;
+                return headB; //this means it is our intersection point
             }
-
+            // otherwise keep moving in the second linked list
             headB=headB->next;
         }
-        return NULL;
+        return NULL; //if no intersection point then retun NULL
     }
 
     /* BRUTE FORCE APPROACH: 
