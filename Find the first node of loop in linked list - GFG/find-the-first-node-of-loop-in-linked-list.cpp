@@ -44,6 +44,8 @@ class Solution
 {
     public:
      //Function to find first node if the linked list has a loop.
+    // BRUTE FORCE SOLUTION: USING SET TO STORE THE ADDRESS OF EACH NODE
+    // AND IF THE ADDRESS IS ALREADY PRESENT IN THE SET, IT MEANS THE CYCLE START FROM THAT NODE
     int findFirstNode(Node* head)
     {
         // your code here
