@@ -10,6 +10,57 @@
  */
 class Solution {
 public:
+    ListNode*midElement(ListNode*head)
+    {
+        ListNode*slow=head;
+        ListNode*fast=head->next;
+
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+    ListNode*reverseLL(ListNode*head)
+    {
+        ListNode*prevP=NULL;
+        ListNode*currP=head;
+        ListNode*nextP;
+
+        while(currP!=NULL)
+        {
+            nextP=currP->next;
+            currP->next=prevP;
+
+            prevP=currP;
+            currP=nextP;
+        }
+        head=prevP;
+        return head;
+    }
+    bool isPalindrome(ListNode* head) 
+    {
+        ListNode*mid=midElement(head);
+
+        mid->next=reverseLL(mid->next);
+        mid=mid->next;
+
+        ListNode*temp=head;
+
+        while(mid!=NULL)
+        {
+            if(mid->val!=temp->val)
+            {
+                return false;
+            }
+            mid=mid->next;
+            temp=temp->next;
+        }
+        return true;
+    }
+
+    /* BRUTE FORCE APPROACH
     bool isPalindrome(ListNode* head) {
         vector<int>arr;
 
@@ -30,5 +81,5 @@ public:
             }
         }
         return true;
-    }
+    }*/
 };
