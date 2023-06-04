@@ -32,8 +32,118 @@ struct Node {
 class Solution{
   public:
     //Function to check whether the list is palindrome.
+    /*Optimized Solution
     
-    // BRUTE FORCE APPROACH: USING EXTRA VECTOR TO STORE THE ELEMENTS AND CHECKING IF IT IS PALINDROME OR NOT!
+    1. Find the middle element of the linked list. 
+    2. Reverse a linked list from the next element of the middle element.
+    3. Iterate through the new list until the middle element reaches the end of the list.
+    4. Use a temp node to check if the same element exists in the linked list from the middle element.
+    
+    DRY RUN:
+    L: 1->2->3->3->2->1->NULL
+       ↑
+      head
+
+    STEP 1. Find the middle element of the linked list
+
+        1->2->3->3->2->1->NULL
+        ↑     ↑
+        head  mid
+    
+    STEP 2: Reverse a linked list from the next element of the middle element.
+
+        1->2->3->1->2->3->NULL
+        ↑     ↑
+        head  mid
+    
+    STEP 3: Move the mid pointer to the next element
+
+        1->2->3->1->2->1->NULL
+        ↑        ↑
+        head    mid
+    
+    STEP 4: Now keep a temp pointer at the head and traverse untill mid!=NULL
+
+       head
+        ↓
+        1->2->3->1->2->1->NULL
+        ↑        ↑
+        temp    mid
+
+
+        while(mid!=NULL)
+        {
+            if(temp->data != mid->data)
+                return false;
+            mid=mid->next;
+            temp=temp->next;
+        }
+        return true;
+    */
+    Node*midElement(Node*head)
+    {
+        Node*slow=head;
+        Node*fast=head->next;
+
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+    Node*reverseLL(Node*head)
+    {
+        Node*prevP=NULL;
+        Node*currP=head;
+        Node*nextP;
+
+        while(currP!=NULL)
+        {
+            nextP=currP->next;
+            currP->next=prevP;
+
+            prevP=currP;
+            currP=nextP;
+        }
+        head=prevP;
+        return head;
+    }    
+    bool isPalindrome(Node *head)
+    {
+        // if the linked list is empty or only one node is present then it's already a palindrome 
+        if(head==NULL || head->next==NULL)
+        {
+            return true;
+        }
+
+        // finding the mid element
+        Node*mid=midElement(head);
+
+        // reversing the list from the next element of mid 
+        mid->next=reverseLL(mid->next);
+    
+        // moving mid to the next element 
+        mid=mid->next;
+
+        // temp will start from the begining
+        Node*temp=head;
+
+        while(mid!=NULL)
+        {
+            if(mid->data!=temp->data)
+            {
+                return false;
+            }
+            mid=mid->next;
+            temp=temp->next;
+        }
+        return true;
+    }
+    
+    
+    
+    /* BRUTE FORCE APPROACH: USING EXTRA VECTOR TO STORE THE ELEMENTS AND CHECKING IF IT IS PALINDROME OR NOT!
     bool isPalindrome(Node *head)
     {
         //Your code here
@@ -56,7 +166,7 @@ class Solution{
             }
         }
         return true;
-    }
+    }*/
 };
 
 
