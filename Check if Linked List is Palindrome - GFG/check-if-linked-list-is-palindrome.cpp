@@ -32,6 +32,8 @@ struct Node {
 class Solution{
   public:
     //Function to check whether the list is palindrome.
+    
+    // BRUTE FORCE APPROACH: USING EXTRA VECTOR TO STORE THE ELEMENTS AND CHECKING IF IT IS PALINDROME OR NOT!
     bool isPalindrome(Node *head)
     {
         //Your code here
