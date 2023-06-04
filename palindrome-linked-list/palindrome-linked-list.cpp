@@ -10,6 +10,54 @@
  */
 class Solution {
 public:
+    /*Optimized Solution
+    
+    1. Find the middle element of the linked list. 
+    2. Reverse a linked list from the next element of the middle element.
+    3. Iterate through the new list until the middle element reaches the end of the list.
+    4. Use a temp node to check if the same element exists in the linked list from the middle element.
+    
+    DRY RUN:
+    L: 1->2->3->3->2->1->NULL
+       ↑
+      head
+
+    STEP 1. Find the middle element of the linked list
+
+        1->2->3->3->2->1->NULL
+        ↑     ↑
+        head  mid
+    
+    STEP 2: Reverse a linked list from the next element of the middle element.
+
+        1->2->3->1->2->3->NULL
+        ↑     ↑
+        head  mid
+    
+    STEP 3: Move the mid pointer to the next element
+
+        1->2->3->1->2->1->NULL
+        ↑        ↑
+        head    mid
+    
+    STEP 4: Now keep a temp pointer at the head and traverse untill mid!=NULL
+
+       head
+        ↓
+        1->2->3->1->2->1->NULL
+        ↑        ↑
+        temp    mid
+
+
+        while(mid!=NULL)
+        {
+            if(temp->data != mid->data)
+                return false;
+            mid=mid->next;
+            temp=temp->next;
+        }
+        return true;
+    */
     ListNode*midElement(ListNode*head)
     {
         ListNode*slow=head;
