@@ -89,11 +89,22 @@ public:
     }
     bool isPalindrome(ListNode* head) 
     {
+        // if the linked list is empty or only one node is present then it's already a palindrome 
+        if(head==NULL || head->next==NULL)
+        {
+            return true;
+        }
+
+        // finding the mid element
         ListNode*mid=midElement(head);
 
+        // reversing the list from the next element of mid 
         mid->next=reverseLL(mid->next);
+    
+        // moving mid to the next element 
         mid=mid->next;
 
+        // temp will start from the begining
         ListNode*temp=head;
 
         while(mid!=NULL)
