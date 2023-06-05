@@ -9,7 +9,7 @@
 class Solution {
 public:
     /*
-    Approach:
+    Approach: USING FAST AND SLOW POINTER
 
 The following steps are required:
 
@@ -21,6 +21,8 @@ The following steps are required:
     -> Take another pointer, say entry. Point to the very first of the linked list.
     -> Move the slow and the entry pointer ahead by single steps until they collide. 
     -> Once they collide we get the starting node of the linked list.
+
+    FOR REFERENCE: https://takeuforward.org/data-structure/starting-point-of-loop-in-a-linked-list/
     */
     ListNode *detectCycle(ListNode *head) {
         if(head==NULL || head->next==NULL)
