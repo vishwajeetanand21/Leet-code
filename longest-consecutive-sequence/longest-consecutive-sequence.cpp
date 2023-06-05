@@ -1,5 +1,49 @@
 class Solution {
 public:
+    /*
+    OPTIMAL SOLUTION: USING PRIORITY QUEUE
+
+    Step 1: Create a priority queue and add all the array elements in the queue
+
+    Step 2: Maintain 3 variables
+                answer: to store the maximum sequence
+                temp:   to store the current streak
+                currentElement: it will store the current element of the queue
+
+    Step 3: Now traverse in the queue from second element to the last element
+                if currentElement==nextElement (this means duplication)
+                    continue; simply ignore, don't do anything
+                
+                if the currentElement+1 == nextElement
+                    temp+=1
+                else
+                    temp=1
+                pop the current element from the queue 
+                ans=max(ans, temp)
+
+    Step 4: Return the answer
+    
+    DRY RUN
+    arr=   [1, 2, 0, 1]
+    pQueue=[0, 1, 1, 2]
+
+    currenetElement = pQueue.top() = 0
+    ans=1
+    temp=1
+
+    traverse from 2nd element to the last element
+            if currenetElement==nextElement
+                continue
+            if currentElement+1==nextElement
+                temp+=1
+            if currentElement!=nextElement
+                temp=1
+            
+            currentElement=pQueue.top()
+            pQueue.pop()
+            ans=max(ans, temp)
+    return ans
+    */
     int longestConsecutive(vector<int>& arr)
     {
         int n=arr.size();
@@ -11,7 +55,7 @@ public:
 
         priority_queue<int, vector<int>, greater<int>>myQueue;
 
-        for(int i=0;i<n;i++)
+        for(int i=0;i<n;i++) //push all the elements in the queue
         {
             myQueue.push(arr[i]);
         }
@@ -24,7 +68,7 @@ public:
 
         while(myQueue.size()!=0)
         {
-            if(currentElement == myQueue.top())
+            if(currentElement == myQueue.top()) //IMPORTANT
             {
                 myQueue.pop();
                 continue;
