@@ -12,6 +12,8 @@ class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) 
     {
+        // This below code will handle the last part of the linked list
+    // if there is only 2 node at the end and k is 3-> then it will simply return the head, don't reverse anything
         ListNode*temp=head;
         for(int i=0;i<k;i++)
         {
