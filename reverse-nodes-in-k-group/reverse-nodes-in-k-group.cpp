@@ -11,7 +11,19 @@
 class Solution {
 public:
     // Recursive approach
-    // 
+    /*
+    STEP 1: CHECK IF THE REMAINING NODE ARE LESS THAN K OR NOT
+                IT YES THEN DON'T REVERSE ANYTHING
+
+    STEP 2: BASE CONDITION FOR THE RECURSION
+
+    STEP 3: REVERSE FIRST K NODES ITERATIVELLY
+
+    STEP 4: CALL RECURSION ON THE REST OF THE LINKED LIST
+
+    STEP 5: IN THE ITERATIVE METHOD THE HEAD IS RETURNED BY prevP 
+            THEREFORE RETURN prevP
+    */
     ListNode* reverseKGroup(ListNode* head, int k) 
     {
         // This below code will handle the last part of the linked list
@@ -50,9 +62,9 @@ public:
         }
 
         // STEP 2: Make a recursion call on the rest of the linked list 
-        if(nextP!=NULL)
+        if(nextP!=NULL) //CHECK IF THERE IS ANY MORE ELEMENTS
         {
-            head->next=reverseKGroup(nextP, k);
+            head->next=reverseKGroup(nextP, k);// STORE THE ANSWER IN head->next
         }
 
         // STEP 3: During the iterative way the head of the reversed list is on the prevP, so return it
