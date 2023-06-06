@@ -10,6 +10,8 @@
  */
 class Solution {
 public:
+    // Recursive approach
+    // 
     ListNode* reverseKGroup(ListNode* head, int k) 
     {
         // This below code will handle the last part of the linked list
@@ -53,6 +55,7 @@ public:
             head->next=reverseKGroup(nextP, k);
         }
 
+        // STEP 3: During the iterative way the head of the reversed list is on the prevP, so return it
         return prevP;
     }
     /* ITERATIVE APPROACH
