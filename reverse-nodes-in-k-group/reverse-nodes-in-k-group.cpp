@@ -10,6 +10,50 @@
  */
 class Solution {
 public:
+    ListNode* reverseKGroup(ListNode* head, int k) 
+    {
+        ListNode*temp=head;
+        for(int i=0;i<k;i++)
+        {
+            if(temp==NULL)
+            {
+                return head;
+            }
+            temp=temp->next;
+        }
+
+        // bass call
+        if(head==NULL)
+        {
+            return head;
+        }
+
+        // STEP 1: Reverse k linked list
+        ListNode*prevP=NULL;
+        ListNode*currP=head;
+        ListNode*nextP;
+        int count=0;
+
+        while(currP != NULL && count<k)
+        {
+            nextP=currP->next;
+            currP->next=prevP;
+
+            prevP=currP;
+            currP=nextP;
+
+            count++;
+        }
+
+        // STEP 2: Make a recursion call on the rest of the linked list 
+        if(nextP!=NULL)
+        {
+            head->next=reverseKGroup(nextP, k);
+        }
+
+        return prevP;
+    }
+    /* ITERATIVE APPROACH
     int lengthOfLinkedList(ListNode* head) 
     {
         int length = 0;
@@ -48,5 +92,5 @@ public:
             length -= k;
         }
         return dummyHead->next;
-    }
+    }*/
 };
