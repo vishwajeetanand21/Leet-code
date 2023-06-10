@@ -30,6 +30,27 @@ struct Node {
 class Solution
 {
     public:
+    /*
+    LOGIC: 
+    L: 1 2 3 4 5 6 7 8 9 NULL       k=3     O/P: 4 5 6 7 8 9 1 2 3 NULL
+    
+    
+    STEP 1: Reverse the entire linked list
+    L: 9 8 7 6 5 4 3 2 1 NULL
+    
+    
+    STEP 2: Divide the linked list into 2 parts 1st to (n-k)th node and rest k nodes where n=length of the linked list
+    L: (9 8 7 6 5 4) (1 2 3) 
+    
+    
+    STEP 3: Reverse both the halves
+    L: (4 5 6 7 8 9) (3 2 1)
+    
+    
+    STEP 4: Join both the halves
+    L: 4 5 6 7 8 9 1 2 3 NULL
+    */
+    
     // Function to reverse a linked list
     Node* reverseLL(Node*head)
     {
@@ -70,6 +91,7 @@ class Solution
     {
         int n=lengthLL(head);
         
+        // edge case
         if(n==k)
         {
             return head;
