@@ -11,7 +11,7 @@ using namespace std;
 class Solution{
 public:
     /*
-    1. Inithttps://www.thesoftwareguy.in/print-numbers-star-pattern-php/ialize a variable left to 0. This variable keeps track of the index of the last unique element in the modified array.
+    1. Initialize a variable left to 0. This variable keeps track of the index of the last unique element in the modified array.
 
     2. Iterate through the array arr starting from index 1 (right variable).
 
