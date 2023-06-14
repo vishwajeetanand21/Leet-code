@@ -111,6 +111,8 @@ struct Node{
 
 /*  Function which returns the  root of 
     the flattened linked list. */
+    
+// Function to merge 2 sorted linked list
 Node* mergeTwoLL(Node*head1, Node*head2)
 {
     if(head1==NULL)
@@ -160,18 +162,22 @@ Node* mergeTwoLL(Node*head1, Node*head2)
     }
     return newHead;
 }
+// Function to flatten the linked list
 Node *flatten(Node *root)
 {
-   // Your code here
+   // Base call for recursion
    if(root==NULL || root->next==NULL)
    {
        return root;
    }
    
+   // Calling the recursion on the second vertical linked list   
    root->next=flatten(root->next);
    
+   // merging the first vertical LL with second LL
    root=mergeTwoLL(root, root->next);
    
+   // returning the answer
    return root;
 }
 
