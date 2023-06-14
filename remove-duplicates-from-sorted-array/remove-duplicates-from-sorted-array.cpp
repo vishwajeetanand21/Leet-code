@@ -1,6 +1,7 @@
 class Solution 
 {
 public:
+    // Do a dry run for better understanding
     int removeDuplicates(vector<int>& nums) 
     {
         int left=0;
