@@ -11,6 +11,21 @@ using namespace std;
 */
 class Solution{
   public:
+    /*
+    LOGIC: Sorting and Binary Search
+
+    STEP 1: Sort the whole array
+    STEP 2: Traverse the whole array from 0 to n-2, 
+    why we are leaving 2 elements from the last because we have to find the triplets
+    STEP 3: Fix 2 pointers 
+            left=i+1
+            right-n-1
+            and do the search similar to binary search
+            if the sum of arr[i]+arr[left]+arr[right]==0
+                add to the answer vector
+            otherwise do the siimilar operation to binary search
+    */
+    
     //Function to find triplets with zero sum.
     bool findTriplets(int arr[], int n)
     { 
