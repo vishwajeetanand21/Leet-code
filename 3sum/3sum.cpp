@@ -2,23 +2,28 @@ class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& arr) 
     {
+        // size of the array
         int n=arr.size();
 
+        // sort the array in increasing order
         sort(arr.begin(), arr.end());
 
+        // base case
         if(n<3)
         {
             return {};
         }
 
+        // base case
         if(arr[0]>0)
         {
             return {};
         }
 
+        // vector to store the answer
         vector<vector<int>>answer;
 
-        for(int i=0;i<n;i++)
+        for(int i=0;i<n-2;i++)
         {
             if(arr[i]>0)
             {
