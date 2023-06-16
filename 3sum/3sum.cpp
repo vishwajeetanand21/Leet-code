@@ -1,36 +1,66 @@
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& num) 
+    vector<vector<int>> threeSum(vector<int>& arr) 
     {
-        vector<vector<int>> res; 
-        sort(num.begin(), num.end()); 
-        
-        // moves for a
-        for (int i = 0; i < (int)(num.size())-2; i++) {
-            
-            if (i == 0 || (i > 0 && num[i] != num[i-1])) {
-                
-                int lo = i+1, hi = (int)(num.size())-1, sum = 0 - num[i];
-                
-                while (lo < hi) {
-                    if (num[lo] + num[hi] == sum) {
-                        
-                        vector<int> temp; 
-                        temp.push_back(num[i]); 
-                        temp.push_back(num[lo]); 
-                        temp.push_back(num[hi]); 
-                        res.push_back(temp);
-                        
-                        while (lo < hi && num[lo] == num[lo+1]) lo++;
-                        while (lo < hi && num[hi] == num[hi-1]) hi--;
-                        
-                        lo++; hi--;
-                    } 
-                    else if (num[lo] + num[hi] < sum) lo++;
-                    else hi--;
-               }
+        int n=arr.size();
+
+        sort(arr.begin(), arr.end());
+
+        if(n<3)
+        {
+            return {};
+        }
+
+        if(arr[0]>0)
+        {
+            return {};
+        }
+
+        vector<vector<int>>answer;
+
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]>0)
+            {
+                break;
+            }
+            if(i>0 && arr[i]==arr[i-1])
+            {
+                continue;
+            }
+            int left=i+1, right=n-1;
+            int sum=0;
+
+            while(left<right)
+            {
+                sum =arr[i]+arr[left]+arr[right];
+
+                if(sum<0)
+                {
+                    left++;
+                }
+                else if(sum>0)
+                {
+                    right--;
+                }
+                else
+                {
+                    vector<int>temp;
+                    temp.push_back(arr[i]);
+                    temp.push_back(arr[left]);
+                    temp.push_back(arr[right]);
+                    answer.push_back(temp);
+
+                    int last_left_occurance=arr[left];
+                    int last_right_occurance=arr[right];
+
+                    while(left<right && arr[left]==last_left_occurance)
+                        left++;
+                    while(left<right && arr[right]==last_right_occurance)
+                        right--;
+                }
             }
         }
-        return res;    
+        return answer;
     }
 };
