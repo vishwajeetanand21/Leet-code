@@ -2,6 +2,47 @@ class Solution
 {
     public:
     /*
+    APPROACH: 3 (sorting and 2 pointer) but here we have to return the index, so after sorting we will lost the index
+    
+    vector<int> twoSum(vector<int>& nums, int target) 
+    {
+        int n=nums.size();
+
+        if(n<2)
+        {
+            return {};
+        }
+
+        sort(nums.begin(), nums.end());
+
+        int left=0, right=n-1;
+        int sum=0; 
+
+        vector<int>answer;
+
+        while(left<right)
+        {
+            sum=nums[left]+nums[right];
+
+            if(sum==target)
+            {
+                answer.push_back(nums[left]);
+                answer.push_back(nums[right]);
+                return answer;
+            }
+            else if(sum<target)
+            {
+                left++;
+            }
+            else
+            {
+                right--;
+            }
+        }
+        return {};
+    }*/
+    /*
+    APPROACH: 2 (using hashmap)
     LOGIC: we will store the ELEMENT along will its INDEX in the HashMap.
            Then we will traverse the array from left to right
            We'll store the current element as currElement
