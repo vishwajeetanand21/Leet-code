@@ -4,8 +4,10 @@ using namespace std;
 
 // } Driver Code Ends
 
-struct meeting
+// STEP 1: 
+class meeting
 {
+    public:
     int start;
     int end;
     int pos;
@@ -13,10 +15,19 @@ struct meeting
 class Solution
 {
     public:
-    //Function to find the maximum number of meetings that can
-    //be performed in a meeting room.
+    /*
+    FOR ALL GREEDY PROBLEM
+    STEP 1: Create a class or a structure according to the question, here is it start, end and posotion
+    STEP 2: Create a STATIC comparator which will help to sort the array of a class
+    STEP 3: Make an array of class and add all value in the array 
+    STEP 4: Sort the array of class with the help of comparator
+    STEP 5: Take care of the first meeting because that will be executed
+    STEP 6: Start the loop from 1 to n because we have already taken care of the first meeting
+    STEP 7: Finnaly return the answer
+    */
     
-    bool static comparator(struct meeting m1, struct meeting m2)
+    // STEP 2
+    bool static comparator(meeting m1, meeting m2) //IMPORTANT: Always mention static while making comparator
     {
         if(m1.end<m2.end)
             return true;
@@ -30,8 +41,8 @@ class Solution
     }
     int maxMeetings(int starting[], int ending[], int n)
     {
-        // Your code here
-        struct meeting meet[n];
+        // STEP 3
+        meeting meet[n];
         
         for(int i=0;i<n;i++)
         {
@@ -40,12 +51,15 @@ class Solution
             meet[i].pos=i+1;
         }
         
+        // STEP 4
         sort(meet, meet+n, comparator);
         
+        // STEP 5
         int ans=1;
         
         int limit=meet[0].end;
         
+        // STEP 6
         for(int i=1;i<n;i++)
         {
             if(meet[i].start>limit)
@@ -55,6 +69,7 @@ class Solution
             }
         }
         
+        // STEP 7
         return ans;
     }
     
