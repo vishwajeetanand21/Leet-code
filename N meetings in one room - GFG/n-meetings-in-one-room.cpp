@@ -15,12 +15,14 @@ class Solution
     public:
     //Function to find the maximum number of meetings that can
     //be performed in a meeting room.
+    
     bool static comparator(struct meeting m1, struct meeting m2)
     {
         if(m1.end<m2.end)
             return true;
         else if(m1.end>m2.end)
             return false;
+            
         else if(m1.pos<m2.pos)
             return true;
         else
@@ -55,6 +57,32 @@ class Solution
         
         return ans;
     }
+    
+    /*
+    int maxMeetings(int starting[], int ending[], int n)
+    {
+        vector<vector<int>>meet(n);
+        for(int i=0;i<n;i++)
+        {
+            meet[i]={ending[i], starting[i], i+1};
+        }
+        
+        sort(meet.begin(), meet.end());
+        
+        int limit=meet[0][0];
+        int ans=1;
+        
+        for(int i=1;i<n;i++)
+        {
+            if(meet[i][1]>limit)
+            {
+                limit=meet[i][0];
+                ans++;
+            }
+        }
+        
+        return ans;
+    }*/
 };
 
 //{ Driver Code Starts.
