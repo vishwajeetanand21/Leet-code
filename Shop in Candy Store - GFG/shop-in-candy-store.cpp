@@ -7,7 +7,21 @@ class Solution
 {
 public:
     /*
-    1 2 3 4
+    LOGIC: 
+    STEP 1: Sort the array in ascending order
+    STEP 2: For minimum cost
+            Select 1 candy from the starting of the array 
+            Select k candies from the ending of the array
+            Update the index according to this
+            calculate the sum of buying all the candies
+    
+    STEP 3: For maximum cost
+            Select 1 candy from the ending of the array
+            Select k candies from the starting of the array
+            Update the index according to this
+            calculate the sum of buying all the candies
+            
+    STEP 4: Finally add the minimum cost and maximum cost in a vector and return it.
     
     */
     vector<int> candyStore(int candies[], int n, int k)
