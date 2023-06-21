@@ -22,32 +22,57 @@ class Solution
 {
     public:
     //Function to get the maximum total value in the knapsack.
-    bool static comp(Item a, Item b) {
-         double r1 = (double) a.value / (double) a.weight;
-         double r2 = (double) b.value / (double) b.weight;
-         return r1 > r2;
-      }
+    
+    // STEP 2: Write a custome comparator which will find out the value to weight ratio 
+    // and sort it in descending order
+    bool static comparator(Item a, Item b)
+    {
+        double valueWeightRatioA=(double) a.value / (double) a.weight; //value to weight ratio of first item
+        double valueWeightRatioB=(double) b.value / (double) b.weight; //value to weight ratio of second item
+        
+        
+        return valueWeightRatioA > valueWeightRatioB;
+        //the ratio of first item should be greater than the second
+    }
     double fractionalKnapsack(int W, Item arr[], int n)
     {
-        // Your code here
-        sort(arr, arr + n, comp);
-
-          int curWeight = 0;
-          double finalvalue = 0.0;
-    
-          for (int i = 0; i < n; i++) {
-    
-             if (curWeight + arr[i].weight <= W) {
-                curWeight += arr[i].weight;
-                finalvalue += arr[i].value;
-             } else {
-                int remain = W - curWeight;
-                finalvalue += (arr[i].value / (double) arr[i].weight) * (double) remain;
+        //STEP 1: sort the array of Item in decending order of value to weight ratio
+        sort(arr, arr+n, comparator);
+        
+        
+        // STPE 3: Maintain 2 variables
+        int currWeight=0; //this will store the current weight of the knapsack
+        double finalValue=0.0; //this will store the final value of all item
+        
+        
+        // STEP 4: Traverse all the elements from left to right
+        // Because item whose value is greater will be on left and item whose value of less will be on right
+        for(int i=0;i<n;i++)
+        {
+            if(currWeight+arr[i].weight <= W)
+            //this means that if we add this item after that knapsack will has some empty space
+            {
+                currWeight += arr[i].weight;
+                finalValue += arr[i].value;
+            }
+            
+            else if(currWeight+arr[i].weight > W)
+            //this means that if we add this item, our knapsack will be over weight: 
+            // SO WE HAVE TO TAKE FRACTION OF THIS ITEM
+            {
+                int remainingWeight=W-currWeight;//calculating the remaining faction needed
+                
+                double valueWeightRatio=(double) arr[i].value / (double) arr[i].weight;
+                //calculating the value to weight ratio of this element
+                
+                finalValue += valueWeightRatio*remainingWeight;
+                //finally adding the value of this fraction item to the answer variable 
                 break;
-             }
-          }
-    
-          return finalvalue;
+            }
+        }
+        
+        //STEP 5: return the answer 
+        return finalValue;
     }
         
 };
