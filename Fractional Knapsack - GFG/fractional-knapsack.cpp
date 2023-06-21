@@ -33,6 +33,7 @@ class Solution
         
         return valueWeightRatioA > valueWeightRatioB;
         //the ratio of first item should be greater than the second
+        // because we are sorting in decreasing order
     }
     double fractionalKnapsack(int W, Item arr[], int n)
     {
@@ -52,15 +53,15 @@ class Solution
             if(currWeight+arr[i].weight <= W)
             //this means that if we add this item after that knapsack will has some empty space
             {
-                currWeight += arr[i].weight;
-                finalValue += arr[i].value;
+                currWeight += arr[i].weight;//add this element to the knapsack
+                finalValue += arr[i].value;//add the value of this element as well
             }
             
             else if(currWeight+arr[i].weight > W)
             //this means that if we add this item, our knapsack will be over weight: 
             // SO WE HAVE TO TAKE FRACTION OF THIS ITEM
             {
-                int remainingWeight=W-currWeight;//calculating the remaining faction needed
+                int remainingWeight=W-currWeight;//calculating the remaining weight needed
                 
                 double valueWeightRatio=(double) arr[i].value / (double) arr[i].weight;
                 //calculating the value to weight ratio of this element
