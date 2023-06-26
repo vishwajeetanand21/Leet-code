@@ -10,12 +10,20 @@
  */
 class Solution {
 public:
+    /*
+    LOGIC: STEP 1: Make a minimum priority queue
+           STPE 2: Put all the elements of the vector of lists
+           STPE 3: Once your minimum priority queue is ready,
+                   make a linked list from that priority queue
+           STEP 4: Return the linked list 
+    */
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         // using priority queue
         int n=lists.size();
 
         priority_queue<int, vector<int>, greater<int>>myQueue;
 
+        // pushing all the elements in the priority queue
         for(int i=0;i<n;i++)
         {
             ListNode*curr=lists[i];
@@ -26,7 +34,7 @@ public:
             }
         }
 
-        // making an answer linked list
+        // making an answer linked list from the priority queue
         ListNode*head=NULL;
         ListNode*tail=NULL;
 
