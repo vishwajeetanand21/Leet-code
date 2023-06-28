@@ -15,6 +15,10 @@ class Solution{
     // k : find kth smallest element and return using this function
     int kthSmallest(int arr[], int l, int r, int k) {
         //code here
+        /*
+        LOGIC: Put all the elements in a minimum priority queue
+               and return the kth element of the queue from the queue
+        */
         priority_queue<int, vector<int>, greater<int>>myQueue;
         
         for(int i=l;i<=r;i++)
