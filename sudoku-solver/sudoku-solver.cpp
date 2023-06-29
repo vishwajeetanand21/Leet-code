@@ -1,35 +1,60 @@
 class Solution {
 public:
-    bool isvalid(vector<vector<char>>& board,int row,int col,char c)
+    bool isvalid(vector<vector<char>>& arr,int currRow,int currCol,char digit)
     {
+        // current row
         for(int i=0;i<9;i++)
         {
-            if(board[i][col]==c)
+            if(arr[currRow][i]==digit)
+            {
                 return false;
-            if(board[row][i]==c)
-                return false;
-            if(board[3*(row/3)+i/3][3*(col/3)+i%3]==c)
-                return false;
+            }
         }
+
+        // current column
+        for(int i=0;i<9;i++)
+        {
+            if(arr[i][currCol]==digit)
+            {
+                return false;
+            }
+        }
+         
+        // current grid
+        int x=(currRow/3)*3;
+        int y=(currCol/3)*3;
+
+        for(int i=x;i<x+3;i++)
+        {
+            for(int j=y;j<y+3;j++)
+            {
+                if(arr[i][j]==digit)
+                {
+                    return false;
+                }
+            }
+        }
+
+        // finally return true
         return true;
     }
-    bool solve(vector<vector<char>>& board) 
+    bool solve(vector<vector<char>>& arr) 
     {
-       for(int i=0;i<board.size();i++)
+       for(int i=0;i<9;i++)
        {
-           for(int j=0;j<board[0].size();j++)
+           for(int j=0;j<9;j++)
            {
-               if(board[i][j]=='.')
+               if(arr[i][j]=='.')
                {
-                   for(char c='1';c<='9';c++)
+                   for(char digit='1';digit<='9';digit++)
                    {
-                       if(isvalid(board,i,j,c))
+                       if(isvalid(arr,i,j,digit))
                        {
-                           board[i][j]=c;
-                           if(solve(board))
-                               return true;
-                           else
-                              board[i][j]='.';
+                            arr[i][j]=digit;
+                            if(solve(arr))
+                                return true;
+                            else
+                                arr[i][j]='.';
                        }
                    }
                    return false;
@@ -38,8 +63,8 @@ public:
        }
        return true;
     }
-    void solveSudoku(vector<vector<char>>& board) 
+    void solveSudoku(vector<vector<char>>& arr) 
     {
-        solve(board);    
+        solve(arr);    
     }
 };
