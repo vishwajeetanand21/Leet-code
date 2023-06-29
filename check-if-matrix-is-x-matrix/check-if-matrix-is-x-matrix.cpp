@@ -8,7 +8,7 @@ public:
         {
             for(int j=0;j<n;j++)
             {
-                // principle diagonal
+                // principle diagonal elements should not be 0
                 if(i==j)
                 {
                     if(arr[i][j]==0)
@@ -17,7 +17,7 @@ public:
                     }
                 }
 
-                // non-principle diagonal
+                // second diagonal element also should not be 0 
                 if(i+j==n-1)
                 {
                     if(arr[i][j]==0)
@@ -26,6 +26,7 @@ public:
                     }
                 }
 
+                // other than diagonal elements all the elements should be 0
                 if(i!=j && (i+j)!=n-1)
                 {
                     if(arr[i][j]!=0)
@@ -35,6 +36,7 @@ public:
                 }
             }
         }
+        // if all these condition met then we can say that the given matrix is a x-matrix
         return true;
     }
 };
