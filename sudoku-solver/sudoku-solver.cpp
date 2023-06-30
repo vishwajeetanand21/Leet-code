@@ -41,26 +41,26 @@ public:
     bool solve(vector<vector<char>>& arr) 
     {
        for(int i=0;i<9;i++)
-       {
-           for(int j=0;j<9;j++)
-           {
-               if(arr[i][j]=='.')
-               {
-                   for(char digit='1';digit<='9';digit++)
-                   {
-                       if(isvalid(arr,i,j,digit))
-                       {
+        {
+            for(int j=0;j<9;j++)
+            {
+                if(arr[i][j]=='.')
+                {
+                    for(char digit='1';digit<='9';digit++)
+                    {
+                        if(isvalid(arr,i,j,digit))
+                        {
                             arr[i][j]=digit;
                             if(solve(arr))
                                 return true;
                             else
                                 arr[i][j]='.';
-                       }
-                   }
-                   return false;
-               }
-           }
-       }
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
        return true;
     }
     void solveSudoku(vector<vector<char>>& arr) 
