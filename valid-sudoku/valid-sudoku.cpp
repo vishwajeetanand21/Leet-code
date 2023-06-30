@@ -35,6 +35,7 @@ public:
                 }
             }
         }
+        arr[currRow][currCol]=digit;
 
         return true;
     }
