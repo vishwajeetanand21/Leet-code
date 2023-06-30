@@ -1,5 +1,70 @@
 class Solution {
 public:
+    bool isSafe(vector<vector<char>>&arr, int currRow, int currCol)
+    {
+        char digit = arr[currRow][currCol];
+
+        arr[currRow][currCol]='.';
+
+        for(int i=0;i<9;i++)
+        {
+            if(arr[currRow][i]==digit)
+            {
+                return false;
+            }
+        }
+
+        for(int i=0;i<9;i++)
+        {
+            if(arr[i][currCol]==digit)
+            {
+                return false;
+            }
+        }
+
+        int x=(currRow/3)*3;
+        int y=(currCol/3)*3;
+
+        for(int i=x;i<x+3;i++)
+        {
+            for(int j=y;j<y+3;j++)
+            {
+                if(arr[i][j]==digit)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+    bool solve(vector<vector<char>>&arr)
+    {
+        for(int currRow=0;currRow<9;currRow++)
+        {
+            for(int currCol=0; currCol<9;currCol++)
+            {
+                char digit=arr[currRow][currCol];
+                if(digit!='.' && !isSafe(arr,currRow, currCol))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    bool isValidSudoku(vector<vector<char>>& arr)
+    {
+        if(solve(arr))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    } 
+    /*
     // To check if it is valid,
     // Firstly, replace the character with a '.' so that we can check even after this it is already present or not .. 
     //  - Check for the entire row if it already has the same character twice? Return false if it does
@@ -38,4 +103,5 @@ public:
         }
         return true;
     }
+    */
 };
