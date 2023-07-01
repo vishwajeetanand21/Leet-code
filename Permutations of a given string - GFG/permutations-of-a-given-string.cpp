@@ -27,6 +27,8 @@ class Solution
 		    vector <string> ans;
             recurPermute(0, nums, ans);
             
+            
+            // the below code is for getting unique strings in the final answer
             set<string>uniqueAns;
             for(int i=0;i<ans.size();i++)
             {
