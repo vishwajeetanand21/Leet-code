@@ -15,9 +15,9 @@ public:
     }
     vector<vector<int>> permuteUnique(vector<int>& arr)
     {
-        set < vector < int >> ans;//vector to store all the possible permutations
+        set < vector < int >> ans;//set to store all the possible permutations
         recurPermute(0, arr, ans); //calling the recursive function
-    //   return ans; //finally returning the answer 
+        //return ans; //finally returning the answer 
         vector<vector<int>>finalAns;
 
         for(auto i: ans)
