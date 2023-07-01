@@ -11,7 +11,17 @@ class Solution
     //Function to search a given number in row-column sorted matrix.
     bool search(vector<vector<int> > arr, int n, int m, int x) 
     {
-        // code here 
+        /*
+        LOGIC: For each row traverse from right to left
+               For each column traverse from  up to down
+               
+               As the element is sorted in increasing order
+               if(arr[i][j]<x) 
+                    This means that x will not be there in this row, so it's better to search in the next row
+               if(arr[i][j]==x)
+                    return 1
+            
+        */
         for(int i=0;i<n;i++)
         {
             for(int j=m-1;j>=0;j--)
