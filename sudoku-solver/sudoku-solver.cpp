@@ -53,8 +53,7 @@ public:
                             arr[i][j]=digit;
                             if(solve(arr))
                                 return true;
-                            else
-                                arr[i][j]='.';
+                            arr[i][j]='.';
                         }
                     }
                     return false;
