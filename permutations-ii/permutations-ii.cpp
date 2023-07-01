@@ -1,6 +1,32 @@
 class Solution {
 public:
-    void solve(vector<int>& arr, vector<int>& curr, vector<bool>& visited, vector<vector<int>>& answer)
+    void recurPermute(int index, vector < int > & nums, set< vector < int >> & ans) {
+        if (index == nums.size()) //whenever the index reaches n it means we got one solution
+        {
+            ans.insert(nums);//add the solution to the answer vector
+            return; 
+        }
+        for (int i = index; i < nums.size(); i++) //traverse from left to right
+        {
+            swap(nums[index], nums[i]); //and swap the index element and ith element
+            recurPermute(index + 1, nums, ans); //call the recursive function again
+            swap(nums[index], nums[i]); //backtracking line
+        }
+    }
+    vector<vector<int>> permuteUnique(vector<int>& arr)
+    {
+        set < vector < int >> ans;//vector to store all the possible permutations
+        recurPermute(0, arr, ans); //calling the recursive function
+    //   return ans; //finally returning the answer 
+        vector<vector<int>>finalAns;
+
+        for(auto i: ans)
+        {
+            finalAns.push_back(i);
+        }
+        return finalAns;
+    }
+    /*void solve(vector<int>& arr, vector<int>& curr, vector<bool>& visited, vector<vector<int>>& answer)
     {
         if (curr.size() == arr.size())
         {
@@ -35,5 +61,5 @@ public:
         solve(arr, curr, visited, answer);
 
         return answer;
-    }
+    }*/
 };
