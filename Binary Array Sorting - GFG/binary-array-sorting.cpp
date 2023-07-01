@@ -13,7 +13,9 @@ class Solution{
     //Function to sort the binary array.
     void binSort(int A[], int N)
     {
-       //Your code here
+       /*
+       LOGIC: Count sort
+       */
        int countZeros=0, countOnes=0;
        
        for(int i=0;i<N;i++)
