@@ -6,6 +6,35 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
+    // using variables: space optimization
+    int usingVariables(vector<int>&heights, int index)
+    {
+        if(index==0)
+        {
+            return 0;
+        }
+    
+        int a=0, b=0, c;
+    
+        for(int index=1; index<heights.size(); index++)
+        {
+            int jumpTwo=INT_MAX;
+    
+            int jumpOne=b+ abs(heights[index] - heights[index-1]);
+    
+            if(index>1)
+            {
+                jumpTwo=a+ abs(heights[index] - heights[index-2]);
+            }
+    
+            c=min(jumpOne, jumpTwo);
+    
+            a=b;
+            b=c;
+        }
+        return c;
+    }  
+      
     // using tabulation
     int usingTabluation(vector<int>&heights, int index)
     {
@@ -90,8 +119,8 @@ class Solution {
         // Code here
         // return usingRecursion(heights, n-1);
         // return usingMemoization(heights, n-1);
-        return usingTabluation(heights,n-1);
-        
+        // return usingTabluation(heights,n-1);
+        return usingVariables(heights, n-1);
     }
 };
 
