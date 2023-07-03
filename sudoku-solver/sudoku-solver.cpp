@@ -53,7 +53,7 @@ public:
                             arr[i][j]=digit;
                             if(solve(arr))
                                 return true;
-                            arr[i][j]='.';
+                            arr[i][j]='.';//backtracking
                         }
                     }
                     return false;
