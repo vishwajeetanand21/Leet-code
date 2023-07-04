@@ -31,6 +31,8 @@ public:
     int usingTabulationHelper(int index, vector<int>&arr, vector<int>&dp)
     {
         int n=arr.size();
+
+        // base cases
         if(n==0)
         {
             return 0;
@@ -66,6 +68,19 @@ public:
     // using memoization
     int usingMemoizationHelper(int index, vector<int>&arr, vector<int>&dp)
     {
+        int n=arr.size();
+
+        // base cases
+        if(n==0)
+        {
+            return 0;
+        }
+        if(n==1)
+        {
+            return arr[0];
+        }
+
+
         if(dp[index]!=-1)
         {
             return dp[index];
@@ -116,7 +131,7 @@ public:
 
         // return usingRecursion(n-1, arr);
         // return usingMemoization(n-1, arr);
-        return usingTabulation(n-1, arr);
-        // return usingVariables(n-1, arr);
+        // return usingTabulation(n-1, arr);
+        return usingVariables(n-1, arr);
     }
 };
