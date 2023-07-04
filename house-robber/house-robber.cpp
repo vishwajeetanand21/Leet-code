@@ -30,6 +30,17 @@ public:
     //using tabulation
     int usingTabulationHelper(int index, vector<int>&arr, vector<int>&dp)
     {
+        int n=arr.size();
+        if(n==0)
+        {
+            return 0;
+        }
+        if(n==1)
+        {
+            return arr[0];
+        }
+
+
         dp[0]=arr[0];
         dp[1]=max(arr[0], arr[1]);
 
@@ -105,7 +116,7 @@ public:
 
         // return usingRecursion(n-1, arr);
         // return usingMemoization(n-1, arr);
-        // return usingTabulation(n-1, arr);
-        return usingVariables(n-1, arr);
+        return usingTabulation(n-1, arr);
+        // return usingVariables(n-1, arr);
     }
 };
