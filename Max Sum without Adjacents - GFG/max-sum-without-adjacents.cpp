@@ -30,7 +30,7 @@ public:
 	        a=b;
 	        b=c;
 	    }
-	    return c;
+	    return b;
 	}
 	
 	//using tabulation
@@ -103,8 +103,8 @@ public:
 	    // code here
 	   // return usingRecursion(n-1, arr);
 	   //return  usingMemoization(n-1, arr);
-	   return usingTabulation(n-1, arr);
-	   //return usingVariables(n-1, arr);
+	   //return usingTabulation(n-1, arr);
+	   return usingVariables(n-1, arr);
 	}
 };
 
