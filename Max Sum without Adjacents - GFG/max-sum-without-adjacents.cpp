@@ -9,8 +9,31 @@ using namespace std;
 class Solution{
 public:	
 	// calculate the maximum sum with out adjacent
-	//using tabulation
+	//space optimization
+	int usingVariables(int index, int*arr)
+	{
+	    if(index==0)
+	    {
+	        return arr[0];
+	    }
+	    
+	    int a=arr[0];
+	    int b=max(arr[0] , arr[1]);
+	    int c;
+	    
+	    for(int i=2;i<=index;i++)
+	    {
+	        int pick=arr[i]+a;
+	        int notPick= 0 +b;
+	        
+	        c=max(pick, notPick);
+	        a=b;
+	        b=c;
+	    }
+	    return c;
+	}
 	
+	//using tabulation
 	int usingTabulation(int index, int*arr)
 	{
 	    vector<int>dp(index+1, -1);
@@ -81,6 +104,7 @@ public:
 	   // return usingRecursion(n-1, arr);
 	   //return  usingMemoization(n-1, arr);
 	   return usingTabulation(n-1, arr);
+	   //return usingVariables(n-1, arr);
 	}
 };
 
