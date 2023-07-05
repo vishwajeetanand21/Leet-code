@@ -1,7 +1,14 @@
 class Solution {
 public:
-    vector<vector<int>>finalAns;
+    /*
+    LOGIC: Generating all subset is as same as generating all sub-sequence of an array
+           Therefore below is the code to generate all sub-sequence of an array
+    */
 
+    // Declare a global variable
+    vector<vector<int>>finalAns; //variable to store all the possible combinations
+
+    // the same function which use to generate all sub-sequence of an array
     void solve(int index, vector<int>&answer, vector<int>&arr, int n)
     {
         if(index==n)
