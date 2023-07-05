@@ -3,11 +3,18 @@
 using namespace std;
 
 // } Driver Code Ends
-
-#include <bits/stdc++.h>
 class Solution{
 	public:
+	    /*
+	    LOGIC: The power set is as same as subset and sub-sequence for any array
+	           Therefore we will be writing the code for generating all the sub-sequence of an array
+	    */
+	
+	    // Declare a global variable to store all the combinations
 	    vector<string>finalAns;
+	    
+	    //write the same code for generating all the sub-sequence of any string
+	    // Slight modification here use a string instead of a vector
 	    void solve(int index, string answer, string str, int n)
 	    {
 	        if(index==n)
