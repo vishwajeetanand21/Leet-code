@@ -11,55 +11,60 @@ using namespace std;
 class Solution{
     public:
     
-    void findPathHelper(int i, int j, vector < vector < int >> & a, int n, vector < string > & ans, string move,
-    vector < vector < int >> & vis) 
+    void findPathHelper(int currRow, int currCol, vector<vector<int>>&mat, int n, vector<string>&ans, string move, vector<vector<int>>&visited)
     {
-        if (i == n - 1 && j == n - 1) 
+        if(currRow==n-1 && currCol==n-1)
         {
             ans.push_back(move);
-            return;
+            return ;
         }
-    
+        
         // downward
-        if (i + 1 < n && !vis[i + 1][j] && a[i + 1][j] == 1) 
+        if(currRow+1<n    &&   visited[currRow+1][currCol]==0     &&      mat[currRow+1][currCol]==1)
         {
-            vis[i][j] = 1;
-            findPathHelper(i + 1, j, a, n, ans, move + 'D', vis);
-            vis[i][j] = 0;
+            visited[currRow][currCol]=1;
+            findPathHelper(currRow+1, currCol, mat, n, ans, move+"D", visited);
+            visited[currRow][currCol]=0;//backtracking line 
         }
         
         // left
-        if (j - 1 >= 0 && !vis[i][j - 1] && a[i][j - 1] == 1) {
-            vis[i][j] = 1;
-            findPathHelper(i, j - 1, a, n, ans, move + 'L', vis);
-            vis[i][j] = 0;
-        }
-    
-        // right 
-        if (j + 1 < n && !vis[i][j + 1] && a[i][j + 1] == 1) 
+        if(currCol-1>=0   &&   visited[currRow][currCol-1]==0     &&      mat[currRow][currCol-1]==1)
         {
-            vis[i][j] = 1;
-            findPathHelper(i, j + 1, a, n, ans, move + 'R', vis);
-            vis[i][j] = 0;
+            visited[currRow][currCol]=1;
+            findPathHelper(currRow, currCol-1, mat, n, ans, move+"L", visited);
+            visited[currRow][currCol]=0;
         }
-    
+        
+        // right
+        if(currCol+1<n    &&   visited[currRow][currCol+1]==0     &&      mat[currRow][currCol+1]==1)
+        {
+            visited[currRow][currCol]=1;
+            findPathHelper(currRow, currCol+1, mat, n, ans, move+"R", visited);
+            visited[currRow][currCol]=0;
+        }
+        
         // upward
-        if (i - 1 >= 0 && !vis[i - 1][j] && a[i - 1][j] == 1) 
+        if(currRow-1>=0   &&   visited[currRow-1][currCol]==0     &&      mat[currRow-1][currCol]==1)
         {
-            vis[i][j] = 1;
-            findPathHelper(i - 1, j, a, n, ans, move + 'U', vis);
-            vis[i][j] = 0;
+            visited[currRow][currCol]=1;
+            findPathHelper(currRow-1, currCol, mat, n, ans, move+"U", visited);
+            visited[currRow][currCol]=0;
         }
-    
-    }    
-    vector<string> findPath(vector<vector<int>> &m, int n) 
+    }  
+    vector<string> findPath(vector<vector<int>> &mat, int n) 
     {
         // Your code goes here
-        vector < string > ans;
-        vector < vector < int >> vis(n, vector < int > (n, 0));
+            
+        // declaring a vector to store all the possible paths
+        vector<string>ans;
+        vector<vector<int>>visited(n, vector<int>(n,0));
         
-        if (m[0][0] == 1) findPathHelper(0, 0, m, n, ans, "", vis);
-        return ans;    
+        if (mat[0][0] == 1) 
+        {
+            findPathHelper(0, 0, mat, n, ans, "", visited);
+        }
+       
+        return ans;
     }
 };
 
