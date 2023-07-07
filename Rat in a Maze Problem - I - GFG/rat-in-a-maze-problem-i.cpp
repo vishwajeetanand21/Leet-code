@@ -20,9 +20,9 @@ class Solution{
                 {
                     return true;
                 }
-                return false;
+                // return false;
             }
-            return false;
+            // return false;
         }
         return false;
     }
@@ -68,16 +68,16 @@ class Solution{
     }
     vector<string> findPath(vector<vector<int>> &matrix, int n) 
     {
-        vector<string>answer;
+        vector<string>answer; //variable to store the path in a vector 
         
-        if(matrix[0][0]==1)
+        if(matrix[0][0]==1)// only if the starting cell is 1, then only we can move to the next cell
         {
-            vector<vector<int>>visited(n, vector<int>(n, 0));
+            vector<vector<int>>visited(n, vector<int>(n, 0));// a matrix which will keep a chech whether this cell has been visited to not 
             
-            findPathHelper(0, 0, matrix, n, answer, "", visited);
+            findPathHelper(0, 0, matrix, n, answer, "", visited);//calling the helper function 
         }
         
-        return answer;
+        return answer;//returning the final answer
     }
 };
 
