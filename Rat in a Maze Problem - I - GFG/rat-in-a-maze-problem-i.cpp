@@ -12,38 +12,40 @@ class Solution{
     public:
     bool isSafe(int currRow, int currCol, vector<vector<int>>&visited, vector<vector<int>>&matrix, int n)
     {
-        if(currRow<n && currRow>=0 && currCol<n && currCol>=0)
+        if(currRow<n && currRow>=0 && currCol<n && currCol>=0) //it should be within the boundary limits
         {
-            if(visited[currRow][currCol]==0)
+            if(visited[currRow][currCol]==0) //the next cell should not be already visited
             {
-                if(matrix[currRow][currCol]==1)
+                if(matrix[currRow][currCol]==1) //the next cell should contain 1, then only we can move to that cell
                 {
-                    return true;
+                    return true;//if all conditions are met, finally return true
                 }
-                // return false;
             }
-            // return false;
         }
-        return false;
+        return false;// otherwise the next cell is not safe to traverse
     }
     void findPathHelper(int currRow, int currCol, vector<vector<int>>&matrix, int n, vector<string>&answer, string move, vector<vector<int>>&visited)
     {
-        if(currRow==n-1 && currCol==n-1)
+        if(currRow==n-1 && currCol==n-1) //if we reached the destination index 
         {
-            answer.push_back(move);
+            answer.push_back(move); //then add the string to the answer vector 
             return ;
         }
         
         // down
-        if(isSafe(currRow+1, currCol, visited, matrix, n)==true)
+        if(isSafe(currRow+1, currCol, visited, matrix, n)==true) //check is it safe to go down
         {
-            visited[currRow][currCol]=1;
-            findPathHelper(currRow+1, currCol, matrix, n, answer, move+"D", visited);
-            visited[currRow][currCol]=0;
+            visited[currRow][currCol]=1; //IMPORTANT: mark the current row and column as 1 in the visited array
+            // don't mark the next cell visited[currRow+1][currCol]=1
+            
+            findPathHelper(currRow+1, currCol, matrix, n, answer, move+"D", visited); //calling the recursive frunction from the next cell
+            
+            visited[currRow][currCol]=0; // backtracking line 
         }
+        // Do the same for all the remaining directions 
         
         // left
-        if(isSafe(currRow, currCol-1, visited, matrix, n)==true)
+        if(isSafe(currRow, currCol-1, visited, matrix, n)==true) //check is it safe to go left
         {
             visited[currRow][currCol]=1;
             findPathHelper(currRow, currCol-1, matrix, n, answer, move+"L", visited);
@@ -51,7 +53,7 @@ class Solution{
         }
         
         // right
-        if(isSafe(currRow, currCol+1, visited, matrix, n)==true)
+        if(isSafe(currRow, currCol+1, visited, matrix, n)==true) //check is it safe to go right
         {
             visited[currRow][currCol]=1;
             findPathHelper(currRow, currCol+1, matrix, n, answer, move+"R", visited);
@@ -59,7 +61,7 @@ class Solution{
         }
         
         // up
-        if(isSafe(currRow-1, currCol, visited, matrix, n)==true)
+        if(isSafe(currRow-1, currCol, visited, matrix, n)==true) //check is it safe to go up 
         {
             visited[currRow][currCol]=1;
             findPathHelper(currRow-1, currCol, matrix, n, answer, move+"U", visited);
