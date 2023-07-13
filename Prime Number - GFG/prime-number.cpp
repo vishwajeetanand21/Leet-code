@@ -12,7 +12,7 @@ public:
             return 0;
         }
         
-        for(int i=2;i*i<=n;i++)
+        for(int i=2;i*i<=n;i++) // why i*i<=n because divisors exist in pairs
         {
             if(n%i==0)
             {
