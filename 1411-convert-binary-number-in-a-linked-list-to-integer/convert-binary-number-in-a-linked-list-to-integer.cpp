@@ -10,6 +10,19 @@
  */
 class Solution {
 public:
+    /*
+    APPROACH 1: Using Array to store the binary values
+    TC=O(N)
+    SC=O(N)
+
+    LOGIC: First store the values of the linked list in the array
+           Then traverse from right to left
+
+           1 0 1
+           =(1*2²)+(0*2¹)+(1*2⁰)
+           =(4)+(0)+(1)
+           =5
+    */
     int getDecimalValue(ListNode* head) 
     {
         vector<int>arr;
