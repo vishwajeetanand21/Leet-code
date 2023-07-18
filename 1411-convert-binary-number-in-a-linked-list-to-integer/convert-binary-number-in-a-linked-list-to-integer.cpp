@@ -10,6 +10,37 @@
  */
 class Solution {
 public:
+    int lengthLL(ListNode*head)
+    {
+        int ans=0;
+        while(head!=NULL)
+        {
+            ans++;
+            head=head->next;
+        }
+        return ans;
+    }
+    int getDecimalValue(ListNode* head)
+    {
+        int n=lengthLL(head);
+
+        int answer=0;
+        int power=n-1;
+
+        while(head!=NULL)
+        {
+            int a=head->val;
+            int b=pow(2, power);
+
+            answer+=a*b;
+
+            power--;
+
+            head=head->next;
+        }
+
+        return answer;
+    }
     /*
     APPROACH 1: Using Array to store the binary values
     TC=O(N)
@@ -23,6 +54,7 @@ public:
            =(4)+(0)+(1)
            =5
     */
+    /*
     int getDecimalValue(ListNode* head) 
     {
         vector<int>arr;
@@ -48,4 +80,5 @@ public:
         }
         return answer;
     }
+    */
 };
