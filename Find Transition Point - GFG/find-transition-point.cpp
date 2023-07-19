@@ -23,6 +23,10 @@ int main() {
 
 int transitionPoint(int arr[], int n) {
     // code here
+    /*
+    LOGIC: Traverse from right to left and keep the check of 1s
+    */
+    
     int ansIndex=-1;
     for(int i=n-1;i>=0;i--)
     {
