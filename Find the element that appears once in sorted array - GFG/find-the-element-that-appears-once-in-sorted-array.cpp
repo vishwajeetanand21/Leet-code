@@ -11,7 +11,9 @@ class Solution
   public:
     int findOnce(int arr[], int n)
     {
-        //code here.
+        /*
+        LOGIC: We know that XOR of two number is always 0
+        */
         int ans=arr[0];
         
         for(int i=1;i<n;i++)
