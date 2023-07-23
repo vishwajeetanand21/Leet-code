@@ -12,7 +12,7 @@ class Solution
     int findOnce(int arr[], int n)
     {
         /*
-        LOGIC: We know that XOR of two number is always 0
+        LOGIC: We know that XOR of two same number is always 0
         */
         int ans=arr[0];
         
