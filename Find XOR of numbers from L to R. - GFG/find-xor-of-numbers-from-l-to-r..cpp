@@ -9,6 +9,26 @@ using namespace std;
 
 class Solution {
   public:
+/*
+OPTIMAL SOLUTION TC:O(1)
+
+Left=3      right=6 
+(3^4^5^6)=4
+
+We know how to find the XOR from 1 to n (previous question)
+XOR(6)                  XOR(2)
+(1^2^3^4^5^6)           (1^2)
+
+XOR(6) ^ XOR(2)
+=(1^2^3^4^5^6)^(1^2)
+=(3^4^5^6)
+
+Therefore we can simplify the equation
+
+XOR in range (left, right) 
+= XOR(right)^XOR(left-1)
+
+*/
     int XORfunction(int n)
     {
             if(n%4==1)
