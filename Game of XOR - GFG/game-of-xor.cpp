@@ -8,11 +8,7 @@ class Solution {
     int gameOfXor(int n , int arr[]) 
     {
         // code here
-        if(n%2==0) //even
-        {
-            return 0;
-        }
-        else
+        if(n&1==1) //odd length
         {
             int evenIndexElement=0;
             for(int i=0;i<n;i+=2)
@@ -23,6 +19,10 @@ class Solution {
                 }
             }
             return evenIndexElement;
+        }
+        else
+        {
+            return 0;
         }
     }
 };
