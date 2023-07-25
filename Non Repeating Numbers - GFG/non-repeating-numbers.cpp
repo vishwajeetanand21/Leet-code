@@ -60,7 +60,7 @@ public:
         }
         
         // STEP 2:
-        int setbit=xorAll & ~(xorAll-1);
+        int setbit=xorAll & (~(xorAll-1));
         // int setbit=rightMostSetBit(xorAll);
         
         // SETP 3:
