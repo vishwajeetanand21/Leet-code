@@ -3,7 +3,8 @@ public:
     // LOGIC: Do the xor of both the strings
     char findTheDifference(string s, string t) 
     {
-        char ans='a';
+        //initializing the answer variable, later we have to remove this character
+        char ans='a'; 
         for(int i=0;i<s.size();i++)
         {
             ans^=s[i];
@@ -14,5 +15,6 @@ public:
         }
 
         return ans^'a';
+        // removing 'a' because we have already initialized in the begining
     }
 };
