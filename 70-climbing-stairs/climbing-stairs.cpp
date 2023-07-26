@@ -1,7 +1,5 @@
 class Solution {
-public:
-    long long mod = 1e9+7;
-    
+public:    
     // using variables
     int usingVariables(int n)
     {
@@ -37,9 +35,9 @@ public:
         
         for(int i=2;i<=n;i++)
         {
-            dp[i]=dp[i-1]%mod + dp[i-2]%mod;
+            dp[i]=dp[i-1] + dp[i-2];
         }
-        return dp[n]%mod;
+        return dp[n];
     }
     
     // using memoization
@@ -55,9 +53,9 @@ public:
             return dp[n];
         }
         
-        dp[n]=usingMemoizationHelper(n-1,dp)%mod + usingMemoizationHelper(n-2,dp)%mod;
+        dp[n]=usingMemoizationHelper(n-1,dp) + usingMemoizationHelper(n-2,dp);
         
-        return dp[n]%mod;
+        return dp[n];
     }
     int usingMemoization(int n)
     {
