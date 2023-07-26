@@ -6,6 +6,34 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
+    // using tabulation
+    int usingTabulation(int index, vector<int>&height)
+    {
+        int n=height.size();
+        
+        vector<int>dp(n+1, -1);
+        
+        dp[0]=0;
+        
+        for(int index=1;index<=n;index++)
+        {
+            // do the same thing which we have done in the memoization stage
+            int jumpTwo=INT_MAX;
+            
+            int jumpOne=dp[index-1]+abs(height[index]-height[index-1]);
+            
+            if(index>1)
+            {
+                jumpTwo=dp[index-2]+abs(height[index]-height[index-2]);
+            }
+            
+            dp[index]=min(jumpOne, jumpTwo);
+        }
+        
+        return dp[n-1];
+    }
+    
+    // using memoization
     int usingMemoizationHelper(int index, vector<int>&height, vector<int>&dp)
     {
         // base case
@@ -36,6 +64,8 @@ class Solution {
         return usingMemoizationHelper(index, height,dp);
     }
     
+    
+    // using recursion
     int usingRecursion(int index, vector<int>&height)
     {
         // base case
@@ -59,7 +89,8 @@ class Solution {
     {
         // Code here
         // return usingRecursion(n-1, height);
-        return usingMemoization(n-1, height);
+        // return usingMemoization(n-1, height);
+        return usingTabulation(n-1, height);
     }
 };
 
