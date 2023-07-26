@@ -6,6 +6,36 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
+    // using variables
+    int usingVariables(int index, vector<int>&height)
+    {
+        // base case
+        if(index==0)
+        {
+            return 0;
+        }
+        
+        int a=0, b=0, c;
+        
+        for(int i=1;i<=index;i++)
+        {
+            int jumpTwo=INT_MAX;
+            
+            int jumpOne=b+abs(height[i]-height[i-1]);
+            
+            if(i>1)
+            {
+                jumpTwo=a+abs(height[i]-height[i-2]);
+            }
+            
+            c=min(jumpOne, jumpTwo);
+            
+            a=b;
+            b=c;
+        }
+        return c;
+    }
+  
     // using tabulation
     int usingTabulation(int index, vector<int>&height)
     {
@@ -13,6 +43,7 @@ class Solution {
         
         vector<int>dp(n+1, -1);
         
+        // base case
         dp[0]=0;
         
         for(int index=1;index<=n;index++)
@@ -90,7 +121,8 @@ class Solution {
         // Code here
         // return usingRecursion(n-1, height);
         // return usingMemoization(n-1, height);
-        return usingTabulation(n-1, height);
+        // return usingTabulation(n-1, height);
+        return  usingVariables(n-1, height);
     }
 };
 
