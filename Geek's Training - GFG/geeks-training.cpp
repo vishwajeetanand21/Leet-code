@@ -5,6 +5,38 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
+    int usingTabulation(int n, vector<vector<int>>&points)
+    {
+        vector<vector<int>>dp(n, vector<int>(4,-1));
+    
+        // base case for day 0
+        dp[0][0]=max(points[0][1], points[0][2]);
+        dp[0][1]=max(points[0][0], points[0][2]);
+        dp[0][2]=max(points[0][0], points[0][1]);
+        dp[0][3]=max(points[0][0], max(points[0][1] , points[0][2]));
+    
+    
+        for(int day=1; day<n; day++)
+        {
+            for(int lastDay=0; lastDay<4; lastDay++)
+            {
+                dp[day][lastDay]=0;
+    
+                int maxi=INT_MIN;
+                for(int task=0; task<3; task++)
+                {
+                    if(task!=lastDay)
+                    {
+                        int temp=points[day][task] + dp[day-1][task];
+                        maxi=max(maxi, temp);
+                    }
+                }
+                dp[day][lastDay]=maxi;
+            }
+        }
+        return dp[n-1][3];
+    }  
+  
     int usingMemoizationHelper(int day, int lastDay, vector<vector<int>>&points, vector<vector<int>>&dp)
     {
         if(dp[day][lastDay]!=-1)
@@ -77,7 +109,8 @@ class Solution {
     {
         // Code here
         // return usingRecursion(n-1, 3, points);
-        return usingMemoization(n, 3, points);
+        // return usingMemoization(n, 3, points);
+        return usingTabulation(n, points);
     }
 };
 
