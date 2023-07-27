@@ -92,7 +92,7 @@ class Solution {
     int usingMemoization(int index, vector<int>&height)
     {
         vector<int>dp(index+1,-1);
-        return usingMemoizationHelper(index, height,dp);
+        return usingMemoizationHelper(index-1, height,dp);
     }
     
     
@@ -120,9 +120,9 @@ class Solution {
     {
         // Code here
         // return usingRecursion(n-1, height);
-        // return usingMemoization(n-1, height);
+        return usingMemoization(n, height);
         // return usingTabulation(n-1, height);
-        return  usingVariables(n-1, height);
+        // return  usingVariables(n-1, height);
     }
 };
 
