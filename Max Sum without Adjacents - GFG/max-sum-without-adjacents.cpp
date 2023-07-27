@@ -9,6 +9,26 @@ using namespace std;
 class Solution{
 public:	
 	// calculate the maximum sum with out adjacent
+	// using tabulation
+	int usingTabulation(int index, int*arr)
+	{
+	    int n=sizeof(arr)/sizeof(arr[0]);
+	    vector<int>dp(index,-1);
+	    
+	    //base case
+	    dp[0]=arr[0];
+	    dp[1]=max(arr[0], arr[1]);
+	    
+	    for(int i=2;i<=index;i++)
+	    {
+	        int pick=arr[i]+dp[i-2];
+	        int notPick=0+dp[i-1];
+	        
+	        dp[i]=max(pick, notPick);
+	    }
+	    return dp[index];
+	}
+	
 	// using memoization
 	int usingMemoizationHelper(int index, int*arr, vector<int>&dp)
 	{
@@ -33,8 +53,9 @@ public:
 	}
 	int usingMemoization(int index, int*arr)
 	{
-	    vector<int>dp(index+1,-1);
-	    return usingMemoizationHelper(index, arr, dp);
+	    int n=sizeof(arr)/sizeof(arr[0]);
+	    vector<int>dp(index+1,-1); //always make the dp array of index+1
+	    return usingMemoizationHelper(index-1, arr, dp); //always return the answer at (index-1)
 	}
 	
 	
@@ -62,7 +83,8 @@ public:
 	{
 	    // code here
 	    // return usingRecursion(n-1, arr);
-	    return usingMemoization(n-1, arr);
+	    return usingMemoization(n, arr); //always mention n here
+	   //return usingTabulation(n-1, arr);
 	}
 };
 
