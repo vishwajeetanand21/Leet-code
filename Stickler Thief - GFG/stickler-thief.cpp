@@ -60,7 +60,12 @@ class Solution
     {
         // Your code here
         // return usingRecursion(n-1, arr);
-        return usingMemoization(n, arr); //always pass n here
+        return usingMemoization(n, arr); //always pass n here; 
+        /*
+        n->in the main function
+        index+1->while creating the dp array
+        index-1->while returning the answer
+        */
     }
 };
 
