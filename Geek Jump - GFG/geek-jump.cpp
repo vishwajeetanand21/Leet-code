@@ -120,9 +120,17 @@ class Solution {
     {
         // Code here
         // return usingRecursion(n-1, height);
-        return usingMemoization(n, height);
-        // return usingTabulation(n-1, height);
+        // return usingMemoization(n, height);
+        
+        return usingTabulation(n, height);
         // return  usingVariables(n-1, height);
+        
+        
+        /*
+        n->in the main function
+        index+1->while creating the dp array
+        index-1->while returning the answer
+        */
     }
 };
 
