@@ -19,7 +19,7 @@ class Solution
         {
             for(int j=0;j<b;j++)
             {
-                if(i==0 && j==0)
+                if(i==0 && j==0)//base case
                 {
                     dp[i][j]=1;
                 }
@@ -41,19 +41,20 @@ class Solution
     // using memoization
     int usingMemoizationHelper(int i, int j, vector<vector<int>>& dp) 
     {
-        if (dp[i][j] != -1) 
-        {
-            return dp[i][j];
-        }
-    
-        // base case IMPORTANT
-        if (i == 1 && j == 1) 
+        // first write the base case
+        if (i == 0 && j == 0) 
         {
             return 1;
         }
-        if (i <=0 || j <= 0) 
+        // check the boundary
+        if (i <0 || j < 0) 
         {
             return 0;
+        }
+        // then check the dp array
+        if (dp[i][j] != -1) 
+        {
+            return dp[i][j];
         }
     
         int up = usingMemoizationHelper(i - 1, j, dp);
@@ -63,8 +64,8 @@ class Solution
     }
     int usingMemoization(int i, int j)
     {
-        vector<vector<int>> dp(i+1, vector<int>(j+1, -1));
-        return usingMemoizationHelper(i, j, dp);
+        vector<vector<int>> dp(i, vector<int>(j, -1));
+        return usingMemoizationHelper(i-1, j-1, dp);
     }
     
     // using recursion
@@ -89,8 +90,8 @@ class Solution
     {
         //code here
         // return usingRecursion(a-1,b-1);
-        // return usingMemoization(a, b);
-        return usingTabulation(a,b);
+        return usingMemoization(a, b);
+        // return usingTabulation(a,b);
     }
 };
 
