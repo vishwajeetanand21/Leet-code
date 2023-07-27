@@ -18,6 +18,7 @@ public:
 		        dp[i]=i*dp[i-1];
 		    }
 		    
+		    // Now calculate the factorial of every digit and add it to a variable
 		    int sum=0;
 		    int originalNum=n;
 		    
@@ -29,6 +30,7 @@ public:
 		        n=n/10;
 		    }
 		    
+		    // if the sum of factorials of all digit is same to that number, then it is a strong 
 		    if(sum==originalNum)
 		    {
 		        return 1;
