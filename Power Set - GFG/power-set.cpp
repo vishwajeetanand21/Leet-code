@@ -34,7 +34,7 @@ class Solution{
             
             sort(finalAns.begin(), finalAns.end());
             
-            finalAns.erase(finalAns.begin());
+            finalAns.erase(finalAns.begin());// removing the blank space from the front
             
             return finalAns;
         }
