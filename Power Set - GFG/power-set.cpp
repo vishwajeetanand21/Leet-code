@@ -5,44 +5,40 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 	public:
-	    /*
-	    LOGIC: The power set is as same as subset and sub-sequence for any array
-	           Therefore we will be writing the code for generating all the sub-sequence of an array
-	    */
-	
-	    // Declare a global variable to store all the combinations
-	    vector<string>finalAns;
-	    
-	    //write the same code for generating all the sub-sequence of any string
-	    // Slight modification here use a string instead of a vector
-	    void solve(int index, string answer, string str, int n)
-	    {
-	        if(index==n)
-	        {
+        void solve(int currIndex, vector<string>& finalAns, string& answer, const string& str, int n)
+        {
+            if (currIndex == n)
+            {
                 finalAns.push_back(answer);
-	            return;
-	        }
-	        
-	        answer+=str[index];
-	        solve(index+1, answer, str, n);
-	        
-	        answer.pop_back();
-	        solve(index+1, answer, str, n);
-	    }
-		vector<string> AllPossibleStrings(string str){
-		    // Code here
-		    int n=str.size();
-		    
-		    string answer="";
-		    
-		    solve(0, answer, str, n);
-		    
-		    sort(finalAns.begin(), finalAns.end());
-		    
-		    finalAns.erase(finalAns.begin());// IMPORTANT: Removing the empty string "" from the vector
-		    
-		    return finalAns;
-		}
+                return;
+            }
+        
+            // pick
+            answer.push_back(str[currIndex]);
+            solve(currIndex + 1, finalAns, answer, str, n);
+        
+            // not pick
+            answer.pop_back();
+            solve(currIndex + 1, finalAns, answer, str, n);
+        }
+        
+        vector<string> AllPossibleStrings(string str)
+        {
+            int n = str.size();
+            
+            vector<string> finalAns;
+            
+            string answer = "";
+            
+            solve(0, finalAns, answer, str, n);
+            
+            sort(finalAns.begin(), finalAns.end());
+            
+            finalAns.erase(finalAns.begin());
+            
+            return finalAns;
+        }
+
 };
 
 //{ Driver Code Starts.
