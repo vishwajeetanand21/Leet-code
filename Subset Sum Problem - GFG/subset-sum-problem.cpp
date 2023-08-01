@@ -9,6 +9,12 @@ using namespace std;
 
 class Solution{   
 public:
+// IMPORTANT: FOR REFERENCE VIDEO 
+// https://www.youtube.com/watch?v=_gPcYovP7wc
+// https://www.youtube.com/watch?v=tRpkluGqINc
+
+
+    /*
     // using tabulation
     bool usingTabulation(int n, vector<int>&arr, int k)
     {
@@ -109,13 +115,52 @@ public:
         // final return the answer
         return notPick | pick; //if either one is true it will be true
     }
+    */
+    // using memoization
+bool usingMemoizationHelper(int index, vector<int>&arr, int n, int target, vector<vector<int>>&dp)
+{
+    // first write the base case
+    if(target==0)
+    {
+        return true;
+    }
+    if(index==0)
+    {
+        return arr[index]==target;
+    }
+    
+    // now check the dp array 
+    if(dp[index][target]!=-1)
+    {
+        return dp[index][target];
+    }
+    
+    // now copy the same thing which is writen in recursion code
+    // not pick
+    bool notPick=usingMemoizationHelper(index-1, arr, n, target, dp);
+    
+    // pick 
+    bool pick=false;
+    if(arr[index]<=target)
+    {
+        pick=usingMemoizationHelper(index-1, arr, n, target-arr[index], dp);
+    }
+    
+    return dp[index][target] = notPick | pick;
+}
+bool usingMemoization(int index, vector<int>&arr, int n, int target)
+{
+    vector<vector<int>>dp(n+1, vector<int>(target+1, -1));
+    
+    return usingMemoizationHelper(index, arr, n, target, dp);
+}
     bool isSubsetSum(vector<int>arr, int target){
         // code here 
         int n=arr.size();
         
         // return usingRecursion(n-1, arr, target);
-        // return usingMemoization(n-1, arr, target);
-        return usingTabulation(n, arr, target);
+        return usingMemoization(n-1, arr, n, target);
+        // return usingTabulation(n, arr, target);
     }
 };
 
