@@ -9,118 +9,84 @@ using namespace std;
 
 class Solution{   
 public:
-// IMPORTANT: FOR REFERENCE VIDEO 
-// https://www.youtube.com/watch?v=_gPcYovP7wc
-// https://www.youtube.com/watch?v=tRpkluGqINc
-
-
-    // using tabulation
-    bool usingTabulation(int n, vector<int>&arr, int k)
-    {
-        // creating a dp array
-        vector<vector<bool>>dp(n, vector<bool>(k+1, 0));
-    
-        // first base case
-        for(int i=0;i<n;i++)
-            dp[i][0]=true;
-        
-        // second base case
-        dp[0][arr[0]]=true;
-    
-        // write the nested loops
-        for(int ind=1;ind<n;ind++)
-        {
-            for(int target=1; target<=k; target++)
-            {
-                // Not pick
-                bool notPick = dp[ind - 1][target];
-    
-                // Pick
-                bool pick = false;
-                if (arr[ind] <= target)
-                {
-                    pick = dp[ind - 1][ target - arr[ind] ];
-                }
-    
-                dp[ind][target] = notPick | pick;
-            }
-        }
-    
-        return dp[n-1][k];
-    }
-
     // using memoization
-    bool usingMemoizationHelper(int index, vector<int>& arr, int target, vector<vector<int>>&dp)
+    bool usingMemoizationHelper(int index, vector<int>&arr, int n, int target, vector<vector<int>>&dp)
     {
-        // First check the base case
-        if (target == 0) 
-        {
-            return true;
-        }
-        
-        if (index == 0)
-        {
-            return arr[0] == target;
-        }
-    
-        // Now check the dp array
-        if (dp[index][target] != -1)
-        {
-            return dp[index][target];
-        }
-    
-        // Not pick
-        bool notPick = usingMemoizationHelper(index - 1, arr, target, dp);
-    
-        // Pick
-        bool pick = false;
-        if (target >= arr[index])
-        {
-            pick = usingMemoizationHelper(index - 1, arr, target - arr[index], dp);
-        }
-    
-        return dp[index][target] = notPick || pick;
-    }
-    bool usingMemoization(int index, vector<int>& arr, int target)
-    {
-        int n=arr.size();
-        vector<vector<int>>dp(n, vector<int>(target+1, -1));
-        return usingMemoizationHelper(index, arr, target, dp);
-    }
-
-    // using recursion
-    bool usingRecursion(int index, vector<int>&arr, int target)
-    {
-        // base case
+        // first write the base case same as the recursive function
         if(target==0)
         {
             return true;
         }
         if(index==0)
         {
-            return arr[0]==target;
+            return arr[index]==target;
         }
-    
-        // not pick
-        bool notPick=usingRecursion(index-1, arr, target);
-    
-        // pick
-        bool pick=false;
-        if(target >= arr[index])
+        
+        // now check the dp array 
+        if(dp[index][target]!=-1)
         {
-            pick=usingRecursion(index-1, arr, target-arr[index]);
+            return dp[index][target];
         }
-    
-        // final return the answer
-        return notPick | pick; //if either one is true it will be true
+        
+        // now copy the same thing which is writen in recursion code
+        // not pick
+        bool notPick=usingMemoizationHelper(index-1, arr, n, target, dp);
+        
+        // pick 
+        bool pick=false;
+        if(arr[index]<=target)
+        {
+            pick=usingMemoizationHelper(index-1, arr, n, target-arr[index], dp);
+        }
+        
+        return dp[index][target] = notPick | pick;
     }
-    bool isSubsetSum(vector<int>arr, int target){
+    bool usingMemoization(int index, vector<int>&arr, int n, int target)
+    {
+        // make a 2D dp array of size [n+1][target+1]
+        vector<vector<int>>dp(n+1, vector<int>(target+1, -1));
+        
+        return usingMemoizationHelper(index, arr, n, target, dp);
+    }
+
+
+
+    // using recursion 
+    bool usingRecursion(int index, vector<int>&arr, int n, int target)
+    {
+        // base cases
+        // 1. if the target will be 0, then empty subset will always be equal to 0
+        if(target==0)
+        {
+            return true;
+        }
+        // 2. if there is only 1 element and if that element is equal to the target, then return true 
+        if(index==0)
+        {
+            return arr[index]==target;
+        }
+        
+        // not pick
+        bool notPick=usingRecursion(index-1, arr, n, target);
+        
+        // pick 
+        bool pick=false;
+        if(arr[index]<=target) //IMPORTANT: if the current element is greater than the target, then there is no use to pick the current element
+        {
+            // only if the current element<= target then pick the element, otherwise leave it 
+            pick=usingRecursion(index-1, arr, n, target-arr[index]);
+        }
+        
+        // if any of the recursive call return us TRUE, it means there exist a setset which has the sum equal to the target
+        return notPick | pick;
+    }
+    bool isSubsetSum(vector<int>arr, int k)
+    {
         // code here 
         int n=arr.size();
         
-        // return usingRecursion(n-1, arr, target);
-        // return usingMemoization(n-1, arr, target);
-        return usingTabulation(n, arr, target);
+        // return usingRecursion(n-1, arr, n, k);
+        return usingMemoization(n-1, arr, n, k);
     }
 };
 
