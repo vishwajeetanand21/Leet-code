@@ -9,6 +9,46 @@ using namespace std;
 
 class Solution{   
 public:
+    // using tabulation
+    bool usingTabulation(vector<int>&arr, int n, int k)
+    {
+        // create a 2-D dp array of size [n+1][k+1]
+        vector<vector<bool>>dp(n+1, vector<bool>(k+1, false));
+    
+        
+        // initialize the dp array
+        for(int i=0;i<n;i++)
+        {
+            dp[i][0]=true;
+        }
+        dp[0][arr[0]]=true;
+        
+        // write the nested loops
+        for(int index=1;index<n;index++)
+        {
+            for(int target=1;target<=k;target++)
+            {
+                // copy the same thing which is mentioned in the memoization step and change the recursive function to dp[][]
+                // not pick
+                bool notPick=dp[index-1][target];
+                
+                // pick 
+                bool pick=false;
+                if(arr[index]<=target)
+                {
+                    pick=dp[index-1][ target-arr[index] ];
+                }
+                
+                dp[index][target] = notPick | pick;
+            }
+        }
+        
+        // our answer will be on the bottom-right cell of the dp matrix
+        return dp[n-1][k];
+    }
+
+
+
     // using memoization
     bool usingMemoizationHelper(int index, vector<int>&arr, int n, int target, vector<vector<int>>&dp)
     {
@@ -86,7 +126,8 @@ public:
         int n=arr.size();
         
         // return usingRecursion(n-1, arr, n, k);
-        return usingMemoization(n-1, arr, n, k);
+        // return usingMemoization(n-1, arr, n, k);
+        return usingTabulation(arr, n, k);
     }
 };
 
