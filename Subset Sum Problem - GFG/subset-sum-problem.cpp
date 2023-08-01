@@ -9,6 +9,41 @@ using namespace std;
 
 class Solution{   
 public:
+    // using tabulation
+    bool usingTabulation(int n, vector<int>&arr, int k)
+    {
+        // creating a dp array
+        vector<vector<bool>>dp(n, vector<bool>(k+1, 0));
+    
+        // first base case
+        for(int i=0;i<n;i++)
+            dp[i][0]=true;
+        
+        // second base case
+        dp[0][arr[0]]=true;
+    
+        // write the nested loops
+        for(int ind=1;ind<n;ind++)
+        {
+            for(int target=1; target<=k; target++)
+            {
+                // Not pick
+                bool notPick = dp[ind - 1][target];
+    
+                // Pick
+                bool pick = false;
+                if (arr[ind] <= target)
+                {
+                    pick = dp[ind - 1][ target - arr[ind] ];
+                }
+    
+                dp[ind][target] = notPick | pick;
+            }
+        }
+    
+        return dp[n-1][k];
+    }
+
     // using memoization
     bool usingMemoizationHelper(int index, vector<int>& arr, int target, vector<vector<int>>&dp)
     {
@@ -79,7 +114,8 @@ public:
         int n=arr.size();
         
         // return usingRecursion(n-1, arr, target);
-        return usingMemoization(n-1, arr, target);
+        // return usingMemoization(n-1, arr, target);
+        return usingTabulation(n, arr, target);
     }
 };
 
