@@ -11,33 +11,36 @@ public:
     */
     
     // using memoization
-    bool usingMemoizationHelper(int index, vector<int>&arr, int k, vector<vector<int>>&dp)
+    bool usingMemoizationHelper(int index, vector<int>&arr, int target, vector<vector<int>>&dp)
     {
-        if(k==0)
+        // first write the base case same as the recursive function
+        if(target==0)
         {
             return true;
         }
         if(index==0)
         {
-            return arr[0]==k;
+            return arr[index]==target;
         }
-
-        if(dp[index][k]!=-1)
+        
+        // now check the dp array 
+        if(dp[index][target]!=-1)
         {
-            return dp[index][k];
+            return dp[index][target];
         }
-
+        
+        // now copy the same thing which is writen in recursion code
         // not pick
-        bool notPick=usingMemoizationHelper(index-1, arr, k, dp);
-
-        // pick
+        bool notPick=usingMemoizationHelper(index-1, arr,  target, dp);
+        
+        // pick 
         bool pick=false;
-        if(arr[index]<=k)
+        if(arr[index]<=target)
         {
-            pick=usingMemoizationHelper(index-1, arr, k-arr[index], dp);
+            pick=usingMemoizationHelper(index-1, arr, target-arr[index], dp);
         }
-
-        return dp[index][k] = notPick | pick;
+        
+        return dp[index][target] = notPick | pick;
     }
     bool usingMemoization(int index, vector<int>&arr, int k)
     {
@@ -49,27 +52,32 @@ public:
     }
 
     // using recursion
-    bool usingRecursion(int index, vector<int>&arr, int k)
+    bool usingRecursion(int index, vector<int>&arr, int target)
     {
-        if(k==0)
+        // base cases
+        // 1. if the target will be 0, then empty subset will always be equal to 0
+        if(target==0)
         {
             return true;
         }
+        // 2. if there is only 1 element and if that element is equal to the target, then return true 
         if(index==0)
         {
-            return arr[0]==k;
+            return arr[index]==target;
         }
-
+        
         // not pick
-        bool notPick=usingRecursion(index-1, arr, k);
-
-        // pick
+        bool notPick=usingRecursion(index-1, arr, target);
+        
+        // pick 
         bool pick=false;
-        if(arr[index]<=k)
+        if(arr[index]<=target) //IMPORTANT: if the current element is greater than the target, then there is no use to pick the current element
         {
-            pick=usingRecursion(index-1, arr, k-arr[index]);
+            // only if the current element<= target then pick the element, otherwise leave it 
+            pick=usingRecursion(index-1, arr, target-arr[index]);
         }
-
+        
+        // if any of the recursive call return us TRUE, it means there exist a setset which has the sum equal to the target
         return notPick | pick;
     }
     
