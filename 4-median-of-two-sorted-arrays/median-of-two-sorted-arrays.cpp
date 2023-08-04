@@ -38,21 +38,20 @@ public:
 
         int arrSize=arr.size();
 
+        double ans;
 
         if(arrSize %2==0)
         {
             int a=arr[arrSize/2];
             int b=arr[(arrSize-1)/2];
 
-            double ans=(double)(a+b)/2;
-            return ans;
+            ans=(double)(a+b)/2;
         }
         else
         {
-            double ans=arr[arrSize/2];
-            return ans;
+            ans=arr[arrSize/2];
         }
 
-        // return ans;
+        return ans;
     }
 };
