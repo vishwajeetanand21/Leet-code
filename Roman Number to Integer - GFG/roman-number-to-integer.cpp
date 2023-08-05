@@ -10,31 +10,66 @@ using namespace std;
 
 class Solution {
   public:
-    int romanToDecimal(string &str) {
+    /*
+    LOGIC: There are two types of roman numbers
+            Type 1: IV this is 4
+            Type 2: VI this is 6
+
+    TYPE 1:     if the ith character is smaller than the (i+1)th character
+                then the number will be (i+1)th character - ith character
+                                        V-I
+                                        =5-1
+                                        =4
+            
+    TYPE 2:     if the ith character is larger than the (i+1)th character
+                then the number will be (i)th character + (i+1)th character
+                                        V+I
+                                        5+1
+                                        6
+    */
+    int romanToDecimal(string &str) 
+    {
         // code here
-        map<char, int> m;
-        m.insert({ 'I', 1 });
-        m.insert({ 'V', 5 });
-        m.insert({ 'X', 10 });
-        m.insert({ 'L', 50 });
-        m.insert({ 'C', 100 });
-        m.insert({ 'D', 500 });
-        m.insert({ 'M', 1000 });
-        int sum = 0;
-        for (int i = 0; i < str.length(); i++)
+        // Initialize the map
+        map<char, int>myMap;
+        myMap['I']=1;
+        myMap['V']=5;
+        myMap['X']=10;
+        myMap['L']=50;
+        myMap['C']=100;
+        myMap['D']=500;
+        myMap['M']=1000;
+
+        // calculate the size of the strign
+        int n=str.size();
+
+        // variable to store the answer
+        int ans=0;
+
+        // traverse throught the string (IMPORTANT: Move two index when there is TYPE 1 number)
+        for(int i=0; i<n; )
         {
-            /*If present value is less than next value,
-              subtract present from next value and add the
-              resultant to the sum variable.*/
-            if (m[str[i]] < m[str[i + 1]])
+            int temp; // a temporary variable to store the current number
+
+            // TYPE 2
+            if(i==n-1 || myMap[str[i]] >= myMap[str[i+1]])
             {
-                sum+=m[str[i+1]]-m[str[i]];
+                temp=myMap[str[i]];
                 i++;
-                continue;
             }
-            sum += m[str[i]];
-        }
-        return sum;
+
+            // TYPE 1
+            else
+            {
+                temp = myMap[str[i+1]] - myMap[str[i]];
+                i+=2;
+            }
+
+            // finally add the temporary variable to the answer variable
+            ans+=temp;
+        }      
+
+        return ans;        
     }
 };
 
