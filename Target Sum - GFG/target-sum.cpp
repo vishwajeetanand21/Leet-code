@@ -10,6 +10,45 @@ using namespace std;
 
 class Solution {
   public:
+    // using memoization
+    int usingMemoizationHelper(int currIndex, vector<int>&arr, int target, vector<vector<int>>&dp)
+    {
+       // base case
+        if(currIndex==0)
+        {
+            if(target==0 && arr[0]==0)
+                return 2;
+            if(target==0 || target==arr[0])
+                return 1;
+            else    
+                return 0;
+        }
+
+        // now check the dp array
+        if(dp[currIndex][target] != -1)
+        {
+            return dp[currIndex][target];
+        }
+
+        // write the same thing as recursion
+        // small calculation
+        int notTake=usingMemoizationHelper(currIndex-1, arr, target, dp);
+
+        int take=0;
+        if(arr[currIndex]<=target)
+        {
+            take=usingMemoizationHelper(currIndex-1, arr, target-arr[currIndex], dp);
+        }
+
+        return dp[currIndex][target] = take + notTake;
+    }
+    int usingMemoization(int currIndex, vector<int>&arr, int target, int n)
+    {
+        // creating a dp array of size [n][target+1]
+        vector<vector<int>>dp(n, vector<int>(target+1, -1));
+
+        return usingMemoizationHelper(currIndex, arr, target,  dp);
+    }  
     
     // using recursion
     int usingRecursion(int currIndex, vector<int>&arr, int target)
@@ -53,8 +92,8 @@ class Solution {
 
         int s2 = (totSum-target)/2;
 
-        return usingRecursion(n-1, arr, s2);
-        // return usingMemoization(n-1, arr, s2, n);
+        // return usingRecursion(n-1, arr, s2);
+        return usingMemoization(n-1, arr, s2, n);
     }
 };
 
