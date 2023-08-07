@@ -1,5 +1,47 @@
 class Solution {
 public:
+    // using tabulation
+    int usingTabulation(vector<int>&coins, int amount)
+    {
+        int n=coins.size();
+
+        // create an dp array of size [n][amount+1]
+        vector<vector<int>>dp(n, vector<int>(amount+1, 0));
+
+        // initialize the dp array
+        for(int i=0; i<=amount; i++)
+        {
+            if(i % coins[0] == 0)  
+                dp[0][i] = i/coins[0];
+            else 
+                dp[0][i] = 1e9;
+        }
+
+        // write the nested loop
+        for(int index=1; index<n; index++)
+        {
+            for(int target=0; target<=amount; target++)
+            {
+                // copy the same thing from memoization 
+                // and replace the recursive function with dp array
+
+                // small calculation
+                int notTake=0 + dp[index-1][target];
+
+                int take=INT_MAX;
+                
+                
+                if(coins[index] <= target)
+                {
+                    take = 1 + dp[index][target-coins[index] ];
+                }
+
+                dp[index][target] = min(take, notTake);   
+            }
+        }
+        return dp[n-1][amount];
+    }
+
     // using memoization
     int usingMemoizationHelper(int currIndex, vector<int>&coins, int amount, vector<vector<int>>&dp)
     {
@@ -96,7 +138,8 @@ public:
         int n=coins.size();
 
         // int ans = usingRecursion(n-1, coins, amount);  
-        int ans=usingMemoization(n-1, coins, amount, n); 
+        // int ans=usingMemoization(n-1, coins, amount, n); 
+        int ans=usingTabulation(coins, amount);
 
         return (ans>=1e9) ? -1 : ans;
     }
