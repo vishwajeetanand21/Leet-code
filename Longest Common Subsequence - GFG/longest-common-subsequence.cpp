@@ -134,10 +134,10 @@ class Solution
         // your code here
         
         // return usingRecursion(m-1, n-1, str1, str2);
-        return usingMemoization(m-1, n-1, str1, str2, m, n);
+        // return usingMemoization(m-1, n-1, str1, str2, m, n);
         
         // here we have done right shifting of index by 1 position
-        // return usingTabulation(str1, str2, m, n);
+        return usingTabulation(str1, str2, m, n);
     }
 };
 
