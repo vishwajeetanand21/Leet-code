@@ -12,18 +12,16 @@ public:
             return 0;
         
         
-        bool ans=true;
         
         for(int i=2; i*i<=n; i++) //why i*i<=n  because divisors exist in pairs
         {
             if(n%i==0)
             {
-                ans=false;
-                break;
+                return false;
             }
         }
         
-        return ans;
+        return true;
     }
 };
 
