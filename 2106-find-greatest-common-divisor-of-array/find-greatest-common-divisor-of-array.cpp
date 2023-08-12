@@ -3,11 +3,16 @@ public:
     // using recursion
     int GCD2(int a, int b)
     {
-        // // base case
-        // if(a==0)
-        //     return b;
-        // // recursive call
-        // return GCD2(b%a, a);
+        // base case
+        if(a==0)
+            return b;
+        // recursive call
+        return GCD2(b%a, a);
+    }
+
+    // using loop
+    int GCD(int a, int b)
+    {
         int maxi=max(a,b);
 	    int mini=min(a,b);
 	    
@@ -24,23 +29,6 @@ public:
 	    if(mini==0)
 	        return maxi;
         return 0;
-    }
-
-    // using loop
-    int GCD(int a, int b)
-    {
-        while (a > 0 && b > 0) {
-            if (a > b) {
-                a = a % b;
-            }
-            else {
-                b = b % a;
-            }
-        }
-        if (a == 0) {
-            return b;
-        }
-        return a;
     }
     int findGCD(vector<int>& arr) 
     {
