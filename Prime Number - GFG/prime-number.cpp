@@ -7,20 +7,24 @@ class Solution{
 public:
     int isPrime(int n)
     {
+        // base case
         if(n==0 || n==1)
-        {
             return 0;
-        }
         
-        for(int i=2;i*i<=n;i++) // why i*i<=n because divisors exist in pairs
+        
+        // code here
+        bool ans=true;
+        
+        for(int i=2; i*i<=n; i++)
         {
             if(n%i==0)
             {
-                return 0;
+                ans=false;
+                break;
             }
         }
         
-        return 1;
+        return ans;
     }
 };
 
