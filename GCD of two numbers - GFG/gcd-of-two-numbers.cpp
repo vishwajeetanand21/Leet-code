@@ -11,19 +11,13 @@ class Solution
 	{ 
 	    // code here
 	    
-        while (a > 0 && b > 0) 
-        {
-            if (a > b) 
-                a = a % b;
-            
-            else 
-                b = b % a;
-        }
+	    // base case
+	    if(a==0)
+	        return b;
         
-        if (a == 0)
-            return b;
-        else
-            return a;
+        // recursion call
+        return gcd(b%a, a);
+	    
 	} 
 };
 
