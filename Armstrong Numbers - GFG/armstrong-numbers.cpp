@@ -7,6 +7,13 @@ using namespace std;
 // User function Template for C++
 class Solution {
   public:
+    // counting number of digits at constant time
+    int numberOfDigits2(int n)
+    {
+        return floor(log10(n)+1);
+    }
+    
+    // counting number of digits using loop
     int numberOfDigits(int n)
     {
         int ans=0;
@@ -20,7 +27,7 @@ class Solution {
     }
     string armstrongNumber(int n)
     {
-        int power=numberOfDigits(n);
+        int power=numberOfDigits2(n);
         
         int originalNum=n;
         int sum=0;
