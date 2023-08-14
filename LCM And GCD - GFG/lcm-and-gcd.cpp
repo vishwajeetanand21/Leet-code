@@ -25,7 +25,8 @@ class Solution {
     long long findLCM(long long A, long long B)
     {
         // We know that: LCM x HCF = A x B
-        return (A/findGCD(A,B))*B;
+        // return (A/findGCD(A,B))*B;
+        return (A*B)/findGCD(A,B);
     }
     vector<long long> lcmAndGcd(long long A , long long B) 
     {
